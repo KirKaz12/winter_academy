@@ -2,14 +2,14 @@
 .header
   position: relative
   color: #fff
-  background: url(../images/bg-header.jpg) 50% 50% no-repeat
+  background: url(../images/top-bg_new.jpg) 85% 0% no-repeat
   background-size: cover
 
   &_primary
     overflow: hidden
 
     &_heading
-      border-bottom: 1px solid #696867
+      //border-bottom: 1px solid #696867
 
   &_nav
     font-size: 0
@@ -24,15 +24,22 @@
 
     &_list
       display: inline-block
-      width: 100%
+      min-width 785px
+      margin-top: 30px
+      width: 67.1%
       vertical-align: middle
       white-space: normal
-      text-align: right
+      text-align: left
+      background: #1a1a1a
+      padding: 30px
+      padding-left: 50px
+      padding-right: 55px
 
       li
         display: inline-block
-        padding-left: 4%
+        padding-left: 0%
         padding-top: 3px
+        margin-right: 6%
         vertical-align: middle
         font: 16px/1.4 $museo-sans-500
         text-shadow: 0 2px 4px rgba(1, 1, 1, 0.4)
@@ -66,6 +73,7 @@
     min-width: 120px
     min-height: 120px
     overflow: hidden
+    display: none
 
     a
       display: block
@@ -97,19 +105,26 @@
 
     &_content
       float: left
-      width: 70%
+      width: 100%
       max-width: 1000px
 
     &_badge
       position: relative
-      float: right
+      float: left
+      display: inline-block
       width: 13.6%
-      max-width: 170px
-      margin: 15px 6.5% 0 0
-
+      width: 185px
+      //max-width: 170px
+      margin: 0
+      min-height: 130px
       &_icon
         position: relative
         padding-bottom: 143%
+        padding-bottom: 50px
+        top: -33px
+        left: 34px
+        min-height: 130px
+        width: 185px
 
         .icon
           position: absolute
@@ -117,6 +132,9 @@
           left: 0
           width: 100%
           height: 100%
+          height: 185px;
+          width: 130px;
+          transform: rotate(-90deg);
           color: #fed86e
 
       &_meta
@@ -150,22 +168,25 @@
           &:nth-child(1)
             top: 0
             height: 38%
+            height: auto
 
             span
               font-family: $museo-sans-700
               font-size: 1.6em
 
           &:nth-child(2)
-            top: 0
+            top: -10px
             height: 83%
+            height: auto
 
             span
               font-family: $playfair-bold
               font-size: 8.8em
 
           &:nth-child(3)
-            bottom: 0
             height: 54%
+            height: auto
+            top: 90px
 
             span
               font-family: $playfair-bold
@@ -173,8 +194,8 @@
 
     &_title
       font-family: $museo-sans-900
-      font-size: 55px
-      line-height: 1.2
+      font-size: 46px
+      line-height: 56px
       text-transform: uppercase
 
       em
@@ -189,15 +210,21 @@
       &:after
         content: ''
         display: block
-        width: 75%
+        width: 90%
         height: 7px
         margin-bottom: 3%
         background: #ea1b25
 
     &_description
-      font-family: $clear-sans-regular
-      font-size: 23px
-      line-height: 1.3
+      font-family: $clear-sans-bold
+      font-size: 24px
+      line-height: 30px
+      float: left
+      display: inline-block
+      margin-right: 40px
+      color: #ffd965
+      span
+        text-transform: uppercase
 
   &_secondary
     position: relative
@@ -209,11 +236,17 @@
 
     &_item
       display: inline-block
-      width: 25%
-      padding-right: 3%
+      width: 32%
+      max-width: 371px
+      padding-right: 0%
+      margin-right: 30px
       padding-bottom: 3.8%
       vertical-align: top
-
+      &:nth-child(2n)
+        padding-left: 2%
+        padding-right: 2%
+      &:nth-child(3n)
+        padding-right: 2%
       dt
         margin-bottom: 10px
         font-family: $clear-sans-bold
@@ -222,6 +255,6 @@
         color: #ffd965
 
       dd
-        font-family: $clear-sans-regular
-        font-size: 14px
-        line-height: 1.4
+        font-family: $clear-sans-bold
+        font-size: 17px
+        line-height: 21px
