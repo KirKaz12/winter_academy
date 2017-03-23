@@ -1,0 +1,498 @@
+// Underscore.css v0.0.1, http://git.io/vfX7n
+// ==========================================
+// Extremely time-saving Sass/SCSS/Stylus mixins library
+//
+// (c) Damir Sultanov and contributors
+// http://fronteed.com/underscore.css
+// MIT Licensed
+
+
+// ---------
+// FUNCTIONS
+// Custom functions used by Underscore.css
+
+
+// Normalizes mixin arguments
+@function __arguments($values)
+	$result: ()
+
+	@each $value in $values
+		@if type-of($value) == "list"
+			@each $item in $value
+				$result: append($result, $item, "space")
+		@else
+			$result: append($result, $value, "space")
+
+	@return $result
+
+
+// Converts into list
+@function __list($args...)
+	@return append((), $args, "space")
+
+
+// Converts font-style
+@function __fontStyle($values, $full: false)
+	$style: false
+
+	@if type-of($values) == "list"
+		@if __exist($values, "i" "italic")
+			$style: "italic"
+
+		// full mode
+		@if $full == true and $style == false
+			@if __exist($values, "inh" "inherit")
+				$style: "inherit"
+			@else if __exist($values, "n" "normal")
+				$style: "normal"
+			@else if __exist($values, "o" "oblique")
+				$style: "oblique"
+
+	@return $style
+
+
+// Converts font-weight
+@function __fontWeight($values, $extra: false, $full: false)
+	$weight: false
+
+	@if type-of($values) == "list"
+		@if __exist($values, "b" "bold" 700 "700")
+			$weight: "bold"
+		@if $weight == false and __exist($values, "n" "normal" 400 "400")
+			$weight: "normal"
+		@if $weight == false
+			@if __exist($values, 100 "100")
+				$weight: "100"
+			@if $weight == false and __exist($values, 500 "500")
+				$weight: "500"
+			@if $weight == false and __exist($values, 900 "900")
+				$weight: "900"
+			@if $weight == false and __exist($values, 200 "200")
+				$weight: "200"
+			@if $weight == false and __exist($values, 300 "300")
+				$weight: "300"
+			@if $weight == false and __exist($values, 600 "600")
+				$weight: "600"
+			@if $weight == false and __exist($values, 800 "800")
+				$weight: "800"
+
+		// extra mode
+		@if $extra == true and $weight == false
+			@if __exist($values, "bl" "bolder")
+				$weight: "bolder"
+			@else if __exist($values, "lg" "lighter")
+				$weight: "lighter"
+
+		// full mode
+		@if $full == true and $weight == false
+			@if __exist($values, "inh" "inherit")
+				$weight: "inherit"
+
+	@return $weight
+
+
+// Converts unit
+@function __unit($unit)
+	$string: $unit + ""
+	$length: str-length($string)
+	$value: false
+	$suffix: null
+	$ending: null
+	$slash: str-index($string, "/")
+
+	@if $length > 1
+		$suffix: str-slice($string, -1)
+	@if $length > 2
+		$ending: str-slice($string, -2)
+
+	// slash
+	@if $slash
+		$first: str-slice($string, 1, $slash - 1)
+		$last: "1"
+
+		@if str-length($string) > $slash
+			$last: str-slice($string, $slash + 1)
+		$value: (__number($first) * 100) / (__number($last) * 1) * 1%
+	@else if $ending != "px"
+		@if index("a" "e" "p" "%", $suffix)
+			@if $suffix == "a"
+				$value: "auto"
+			@else if $suffix == "e"
+				$value: $unit + "m"
+			@else if $suffix == "p"
+				@if $length > 2
+					$value: str-slice($string, 1, -2) + "%"
+				@else
+					$value: str-slice($string, 1, 1) + "%"
+			@else
+				$value: $unit
+		@else
+			@if index("a" "auto" "inh" "inherit", $unit)
+				@if $unit == "a" or $unit == "auto"
+					$value: "auto"
+				@else
+					$value: "inherit"
+			@else if index("f" "full" "h" "half", $unit)
+				@if $unit == "f" or $unit == "full"
+					$value: "100%"
+				@else
+					$value: "50%"
+			@else
+				$value: $unit + "px"
+	@if $value != false
+		$unit: $value
+
+	@return unquote($unit + "")
+
+
+// Check strings existance
+@function __exist($list, $values)
+	$result: false
+
+	@each $value in $values
+		@if index($list, $value)
+			$result: true
+
+	@return $result
+
+
+// Removes values from list
+@function __remove($list, $value, $repeat: false)
+	$result: ()
+	$done: false
+
+	@each $item in $list
+		@if $repeat == false
+			@if $item != $value or $done == true
+				$result: append($result, $item)
+			@else
+				$done: true
+		@else
+			@if $item != $value
+				$result: append($result, $item)
+
+	@return $result
+
+
+// Removes list from list
+@function __removeList($list, $values)
+	$result: ()
+
+	@if length($values)
+		@each $value in $values
+			@each $item in $list
+				@if $item != $value and not index($result, $item) and not index($values, $item)
+					$result: append($result, $item)
+	@else
+		$result: $list
+
+	@return $result
+
+
+// Removes first item occurrence from another list
+@function __removeFirst($list, $values)
+	$done: false
+
+	@each $item in $list
+		@if $done == false and index($values, $item)
+			$done: true
+			$list: __remove($list, $item)
+
+	@return $list
+
+
+// Slices a list
+@function __slice($list, $start: 1, $end: length($list))
+	$result: ()
+
+	@for $i from $start through $end
+		$result: append($result, nth($list, $i))
+
+	@return $result
+
+
+// Returns a number
+@function __number($string)
+	$strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+	$numbers: 0 1 2 3 4 5 6 7 8 9
+	$result: 0
+
+	@for $i from 1 through str-length($string)
+		$character: str-slice($string, $i, $i)
+		$index: index($strings, $character)
+
+		@if $index
+			$number: nth($numbers, $index)
+			$result: $result * 10 + $number
+
+	@return $result
+
+
+// Returns position value
+@function __position($string, $first: true)
+	$string: $string + ""
+	$number: __number($string)
+	$length: str-length($string)
+	$suffix: null
+	$ending: null
+	$result: null
+
+	@if $length > 1
+		$suffix: str-slice($string, -1)
+	@if $length > 2
+		$ending: str-slice($string, -2)
+
+	// 0, 0px, 0%, 0p
+	@if $string == "0" or ($number == 0 and $ending == "px") or ($number == 0 and index("%" "p", $suffix) and $string != "top")
+		$result: 0
+	@else
+		@if $number > 0
+			// =number
+			@if $ending != "px"
+				@if index("p" "%", $suffix)
+					$result: $number + "%"
+				@else
+					$result: $number + "px"
+			@else
+				$result: $number + "px"
+		@else
+			// !number
+			@if index("t" "top", $string)
+				$result: "top"
+			@else if index("b" "bottom", $string)
+				$result: "bottom"
+			@else if index("c" "center", $string)
+				$result: "center"
+			@else if index("l" "left", $string)
+				$result: "left"
+			@else if index("r" "right", $string)
+				$result: "right"
+
+	@if $result != null
+		$result: unquote($result)
+	@return $result
+
+
+// Return calculated position
+@function __positions($x: null, $y: null)
+	$position: null
+
+	@if $x != null
+		$x: $x + ""
+	@if $y != null
+		$y: $y + ""
+
+	@if $x != null or $y != null
+
+		// normalize x
+		@if $x == "t"
+			$x: "top"
+		@else if $x == "b"
+			$x: "bottom"
+		@else if $x == "c"
+			$x: "center"
+		@else if $x == "l"
+			$x: "left"
+		@else if $x == "r"
+			$x: "right"
+
+		// normalize y
+		@if $y == "t"
+			$y: "top"
+		@else if $y == "b"
+			$y: "bottom"
+		@else if $y == "c"
+			$y: "center"
+		@else if $y == "l"
+			$y: "left"
+		@else if $y == "r"
+			$y: "right"
+
+		@if $y == null
+			@if $x == "top"
+				$x: 50%
+				$y: 0
+			@else if $x == "bottom"
+				$x: 50%
+				$y: 100%
+			@else if $x == "center"
+				$x: 50%
+				$y: 50%
+			@else if $x == "left"
+				$x: 0
+				$y: 50%
+			@else if $x == "right"
+				$x: 100%
+				$y: 50%
+			@else
+				$y: $x
+		@else if $x == $y
+			@if $x == "top" or $x == "left"
+				$x: 0
+				$y: 0
+			@else if $x == "bottom" or $x == "right"
+				$x: 100%
+				$y: 100%
+			@else if $x == "center"
+				$x: 50%
+				$y: 50%
+		@else
+			@if ($x == "top" and $y == "left") or ($x == "left" and $y == "top")
+				$x: 0
+				$y: 0
+			@else if ($x == "top" and $y == "center") or ($x == "center" and $y == "top")
+				$x: 50%
+				$y: 0
+			@else if ($x == "top" and $y == "right") or ($x == "right" and $y == "top")
+				$x: 100%
+				$y: 0
+			@else if ($x == "center" and $y == "left") or ($x == "left" and $y == "center")
+				$x: 0
+				$y: 50%
+			@else if ($x == "center" and $y == "right") or ($x == "right" and $y == "center")
+				$x: 100%
+				$y: 50%
+			@else if ($x == "bottom" and $y == "left") or ($x == "left" and $y == "bottom")
+				$x: 0
+				$y: 100%
+			@else if ($x == "bottom" and $y == "center") or ($x == "center" and $y == "bottom")
+				$x: 50%
+				$y: 100%
+			@else if ($x == "bottom" and $y == "right") or ($x == "right" and $y == "bottom")
+				$x: 100%
+				$y: 100%
+
+	@if $x != null and $y != null
+		$x: $x + ""
+		$y: $y + ""
+		$position: unquote($x) unquote($y)
+
+	@return $position
+
+
+// Image width (sames as _width mixin)
+@function _w($arguments...)
+	$options: __arguments($arguments)
+	$length: length($options)
+	$filename: null
+	$suffix: null
+	$mime: null
+	$width: null
+
+	@if $length > 0
+		$filename: nth($options, 1)
+		$options: __removeFirst($options, nth($options, 1))
+		$length: length($options)
+
+		// default extension (png)
+		@if str-length($filename) > 4
+			$suffix: str-slice($filename, -4)
+
+			@if index(".png" ".jpg" ".gif", $suffix)
+				$suffix: false
+			@else
+				$suffix: "png"
+
+		@if $length > 0
+			@if $suffix != false or $suffix == null
+				@each $option in $options
+					@if index("png" "jpg" "gif", $option)
+						$suffix: $option
+
+		@if $suffix == null
+			$suffix: "png"
+
+	@if $filename != null
+		@if $suffix == false
+			$width: image-width($filename)
+		@else
+			$width: image-width($filename + "." + $suffix)
+
+	@return $width
+
+@function _width($arguments...)
+	@return _w($arguments...)
+
+@function uw($arguments...)
+	@return _w($arguments...)
+
+@function uwidth($arguments...)
+	@return _w($arguments...)
+
+
+// Image height (sames as _height mixin)
+@function _h($arguments...)
+	$options: __arguments($arguments)
+	$length: length($options)
+	$filename: null
+	$suffix: null
+	$mime: null
+	$height: null
+
+	@if $length > 0
+		$filename: nth($options, 1)
+		$options: __removeFirst($options, nth($options, 1))
+		$length: length($options)
+
+		// default extension (png)
+		@if str-length($filename) > 4
+			$suffix: str-slice($filename, -4)
+
+			@if index(".png" ".jpg" ".gif", $suffix)
+				$suffix: false
+			@else
+				$suffix: "png"
+
+		@if $length > 0
+			@if $suffix != false or $suffix == null
+				@each $option in $options
+					@if index("png" "jpg" "gif", $option)
+						$suffix: $option
+
+		@if $suffix == null
+			$suffix: "png"
+
+	@if $filename != null
+		@if $suffix == false
+			$height: image-height($filename)
+		@else
+			$height: image-height($filename + "." + $suffix)
+
+	@return $height
+
+@function _height($arguments...)
+	@return _h($arguments...)
+
+@function uh($arguments...)
+	@return _h($arguments...)
+
+@function uheight($arguments...)
+	@return _h($arguments...)
+
+
+// Extracts color
+@function __color($string)
+	$result: null
+
+	$result: type-of($string)
+
+	@return $result
+
+@function _color($arguments...)
+	@return __color($arguments...)
+
+
+// Stores variable key
+@mixin _use($arguments...)
+	$values: __arguments($arguments)
+
+	@if length($values) >= 2
+		$key: nth($values, 1)
+		$value: nth($values, 2)
+
+		@if type-of($key) == "string"
+			$__var: map-merge($__var, ($key: $value)) !global
+
+			@if length($values) == 3
+				$third: nth($values, 3)
+				$__var: map-merge($__var, ($key + "_extra": $third)) !global

@@ -1,0 +1,173 @@
+// Underscore.css v0.0.1, http://git.io/vfX7n
+// ==========================================
+// Extremely time-saving Sass/SCSS/Stylus mixins library
+//
+// (c) Damir Sultanov and contributors
+// http://fronteed.com/underscore.css
+// MIT Licensed
+
+
+// Retina and HiDPI
+//
+// @usage: +_r([optional: type])
+// @aliases: _r, _retina, _hd, _hdpi, _hidpi, ur, uretina, uhd, uhdpi, uhidpi
+//
+// @param type (both by default) - optional, media type
+//  keys:
+//    p, print
+//    s, screen
+
+=_r($arguments...)
+	$values: __arguments($arguments)
+	$type: "both"
+	$query: null
+
+	@if length($values) > 0
+		$type: nth($values, 1)
+
+		@if $type == "p" or $type == "print"
+			$type: "print"
+		@else if $type == "s" or $type == "screen"
+			$type: "screen"
+		@else
+			$type: "both"
+
+	// type
+	@if $type == "both"
+		$query: "print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)"
+	@else if $type == "screen"
+		$query: "(-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)"
+	@else if $type == "print"
+		$query: "print"
+
+	@media #{$query}
+		@content
+
+=_retina($arguments...)
+	+_r($arguments...)
+		@content
+
+=_hd($arguments...)
+	+_r($arguments...)
+		@content
+
+=_hdpi($arguments...)
+	+_r($arguments...)
+
+=_hidpi($arguments...)
+	+_r($arguments...)
+		@content
+
+=ur($arguments...)
+	+_r($arguments...)
+		@content
+
+=uretina($arguments...)
+	+_r($arguments...)
+		@content
+
+=uhd($arguments...)
+	+_r($arguments...)
+		@content
+
+=uhdpi($arguments...)
+	+_r($arguments...)
+		@content
+
+=uhidpi($arguments...)
+	+_r($arguments...)
+		@content
+
+
+// Max-width and max-height
+//
+// @usage: +_max(value [optional: direction])
+// @aliases: _max, umax
+//
+// @param value - required
+//  keys:
+//    {number}, {number}px => {number}px
+//    {number}e, {number}em => {number}em
+// @param direction (width by default) - optional, measure specific direction
+//  keys:
+//    w, width => width,
+//    h, height => height
+
+=_max($arguments...)
+	$values: __arguments($arguments)
+	$unit: null
+	$direction: "width"
+
+	@if length($values) > 0
+		@each $value in $values
+			@if index("h" "height", $value)
+				$direction: "height"
+			@else
+				$unit: $value + ""
+				$suffix: null
+				$ending: null
+				$length: str-length($unit)
+
+				@if $length > 1
+					$suffix: str-slice($unit, -1)
+				@if $length > 2
+					$ending: str-slice($unit, -2)
+				@if $ending != "px"
+					@if $suffix == "e"
+						$unit: $unit + "m"
+					@else
+						$unit: $unit + "px"
+
+	@if $unit != null
+		@media (max-#{$direction}: unquote($unit))
+			@content
+
+=umax($arguments...)
+	+_max($arguments...)
+
+
+// Min-width and min-height
+//
+// @usage: +_min(value [optional: direction])
+// @aliases: _min, umin
+//
+// @param value - required
+//  keys:
+//    {number}, {number}px => {number}px
+//    {number}e, {number}em => {number}em
+// @param direction (width by default) - optional, measure specific direction
+//  keys:
+//    w, width => width,
+//    h, height => height
+
+=_min($arguments...)
+	$values: __arguments($arguments)
+	$unit: null
+	$direction: "width"
+
+	@if length($values) > 0
+		@each $value in $values
+			@if index("h" "height", $value)
+				$direction: "height"
+			@else
+				$unit: $value + ""
+				$suffix: null
+				$ending: null
+				$length: str-length($unit)
+
+				@if $length > 1
+					$suffix: str-slice($unit, -1)
+				@if $length > 2
+					$ending: str-slice($unit, -2)
+				@if $ending != "px"
+					@if $suffix == "e"
+						$unit: $unit + "m"
+					@else
+						$unit: $unit + "px"
+
+	@if $unit != null
+		@media (min-#{$direction}: unquote($unit))
+			@content
+
+=umin($arguments...)
+	+_min($arguments...)

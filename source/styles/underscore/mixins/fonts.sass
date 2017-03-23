@@ -1,0 +1,208 @@
+// Underscore.css v0.0.1, http://git.io/vfX7n
+// ==========================================
+// Extremely time-saving Sass/SCSS/Stylus mixins library
+//
+// (c) Damir Sultanov and contributors
+// http://fronteed.com/underscore.css
+// MIT Licensed
+
+
+// Web font (font-face) declaration
+//
+// @usage: +_wf(font-family filename [optional: style weight formats])
+// @aliases: _wf, _webfont, _fontface, _font-face, uwf, uwebfont, ufontface, ufont-face
+//
+// @param font-family - required, value you will use in font stacks
+// @param filename - required, name of the font file, used with $_wff/$_webfont-folder (without extension)
+// @param style (normal by default) - optional, font-style
+//  keys:
+//    i, italic => italic
+// @param weight (normal by default) - optional, font-weight
+//  keys:
+//    b, bold, 700 => bold
+//    n, normal, 400 => normal
+//    100, 200, 300, 500, 600, 800, 900
+// @param formats - optional, limits output to selected formats
+//  keys:
+//    eot, woff, woff2, ttf
+
+=_wf($arguments...)
+	$values: __arguments($arguments)
+
+	@if length($values) > 1
+		$name: nth($values, 1)
+		$file: nth($values, 2)
+		$style: false
+		$weight: false
+		$limits: ()
+		$formats: ()
+		$types: ()
+		$eot: false
+
+		// folder
+		$folder: $_webfont-folder
+
+		@if $folder == null
+			$folder: $_wff
+		@if $folder == false or $folder == null
+			$folder: ""
+
+		// setup options
+		$options: __remove($values, nth($values, 1))
+		$options: __remove($options, nth($options, 1))
+
+		// font-face
+		@font-face
+
+			// detect limitation
+			@if length($options) > 0
+				@if index($options, "eot")
+					$limits: append($limits, eot)
+				@if index($options, "woff")
+					$limits: append($limits, woff)
+				@if index($options, "woff2")
+					$limits: append($limits, woff2)
+				@if index($options, "ttf")
+					$limits: append($limits, ttf)
+
+			// font-family
+			font-family: quote($name)
+
+			// formats
+			@if length($limits) > 0
+				$types: $limits
+			@else
+				$types: $_webfont-type
+
+				@if $types == null
+					$types: $_wft
+				@if $types == false or $types == null
+					$types: ""
+
+			@if length($types) > 0
+				@each $type in $types
+					@if $type == "eot"
+						$eot: true
+						$formats: append($formats, unquote("url('#{$folder}#{$file}.eot?#iefix') format('embedded-opentype')"), comma)
+					@else if $type == "woff" or $type == "woff2"
+						$formats: append($formats, unquote("url('#{$folder}#{$file}.#{$type}') format('#{$type}')"), comma)
+					@else if $type == "ttf"
+						$formats: append($formats, unquote("url('#{$folder}#{$file}.ttf') format('truetype')"), comma)
+			@else
+				$formats: append($formats, unquote("url('#{$folder}#{$file}.woff') format('woff')"), comma)
+
+			// src
+			@if $eot == true
+				src: url('#{$folder}#{$file}.eot')
+
+			src: $formats
+
+			// style and weight
+			@if length($options) > 0
+				$style: __fontStyle($options)
+				$weight: __fontWeight($options)
+
+			// default values
+			@if $style == false
+				$style: "normal"
+			@if $weight == false
+				$weight: "normal"
+
+			font-style: unquote($style)
+			font-weight: unquote($weight)
+
+=_webfont($arguments...)
+	+_wf($arguments...)
+
+=_fontface($arguments...)
+	+_wf($arguments...)
+
+=_font-face($arguments...)
+	+_wf($arguments...)
+
+=uwf($arguments...)
+	+_wf($arguments...)
+
+=uwebfont($arguments...)
+	+_wf($arguments...)
+
+=ufontface($arguments...)
+	+_wf($arguments...)
+
+=ufont-face($arguments...)
+	+_wf($arguments...)
+
+
+// Text overflow
+//
+// @usage: +_to([optional: type overflow])
+// @aliases: _to, _textoverflow, _text-overflow, _uto, utextoverflow, utext-overflow
+//
+// @param type - optional, type of truncation
+// 	keys:
+// 		c, clip => clip
+// 		e, ellipsis => ellipsis
+// @param overflow - optional, type of container overflow
+// 	keys:
+// 		a, auto => auto
+// 		s, scroll => scroll
+// 		h, hidden => hidden
+
+=_to($arguments...)
+	$values: __arguments($arguments)
+	$overflow: "hidden"
+	$type: "ellipsis"
+
+	@if length($values) > 0
+		@each $value in $values
+			@if index("c" "clip", $value)
+				$type: "clip"
+			@if index("a" "auto", $value)
+				$overflow: "auto"
+			@else if index("s" "scroll", $value)
+				$overflow: "scroll"
+
+	overflow: unquote($overflow)
+	text-overflow: unquote($type)
+	white-space: nowrap
+
+=_textoverflow($arguments...)
+	+_to($arguments...)
+
+=_text-overflow($arguments...)
+	+_to($arguments...)
+
+=uto($arguments...)
+	+_to($arguments...)
+
+=utextoverflow($arguments...)
+	+_to($arguments...)
+
+=utext-overflow($arguments...)
+	+_to($arguments...)
+
+
+// Ellipsis for overflowed content
+//
+// @usage: +_e([optional: overflow])
+// @aliases: _e, _ellipsis, ue, uellipsis
+//
+// @param overflow - optional, type of container overflow
+// 	keys:
+// 		a, auto => auto
+// 		s, scroll => scroll
+// 		h, hidden => hidden
+
+=_e($arguments...)
+	$values: __arguments($arguments)
+	$values: append($values, "ellipsis")
+	+_to($values)
+
+=_ellipsis($arguments...)
+	+_e($arguments...)
+
+=ue($arguments...)
+	+_e($arguments...)
+
+=uellipsis($arguments...)
+	+_e($arguments...)

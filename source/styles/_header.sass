@@ -1,0 +1,227 @@
+// header
+.header
+  position: relative
+  color: #fff
+  background: url(../images/bg-header.jpg) 50% 50% no-repeat
+  background-size: cover
+
+  &_primary
+    overflow: hidden
+
+    &_heading
+      border-bottom: 1px solid #696867
+
+  &_nav
+    font-size: 0
+    line-height: 0
+    white-space: nowrap
+
+    &:before
+      content: ''
+      display: inline-block
+      height: 100px
+      vertical-align: middle
+
+    &_list
+      display: inline-block
+      width: 100%
+      vertical-align: middle
+      white-space: normal
+      text-align: right
+
+      li
+        display: inline-block
+        padding-left: 4%
+        padding-top: 3px
+        vertical-align: middle
+        font: 16px/1.4 $museo-sans-500
+        text-shadow: 0 2px 4px rgba(1, 1, 1, 0.4)
+        text-transform: uppercase
+
+        a
+          position: relative
+
+          &:after
+            content: ''
+            position: absolute
+            left: 0
+            bottom: 0
+            width: 0
+            border-bottom: 1px solid
+            transition: .4s
+            opacity: 0
+
+          &:hover
+            &:after
+              width: 100%
+              opacity: 1
+
+  &_logo
+    position: absolute
+    left: 0
+    top: 0
+    width: 12%
+    max-width: 160px
+    max-height: 160px
+    min-width: 120px
+    min-height: 120px
+    overflow: hidden
+
+    a
+      display: block
+      padding-top: 100%
+      color: #000
+      transition: .4s
+      background: #ffd965
+
+      &:hover
+        background: darken(#ffd965, 5%)
+
+    .icon
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      width: 61%
+      height: 61%
+      margin: auto
+
+  &_intro
+    position: relative
+
+    &_offset
+      +s-clear
+      margin-top: 11%
+      padding-bottom: 8.8%
+
+    &_content
+      float: left
+      width: 70%
+      max-width: 1000px
+
+    &_badge
+      position: relative
+      float: right
+      width: 13.6%
+      max-width: 170px
+      margin: 15px 6.5% 0 0
+
+      &_icon
+        position: relative
+        padding-bottom: 143%
+
+        .icon
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+          color: #fed86e
+
+      &_meta
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        text-align: center
+
+        li
+          position: absolute
+          left: 0
+          right: 0
+          font-size: 10px
+          line-height: 1.2
+          color: #000
+          white-space: nowrap
+
+          &:before
+            content: ''
+            display: inline-block
+            height: 100%
+            vertical-align: middle
+
+          span
+            display: inline-block
+            white-space: normal
+            vertical-align: middle
+
+          &:nth-child(1)
+            top: 0
+            height: 38%
+
+            span
+              font-family: $museo-sans-700
+              font-size: 1.6em
+
+          &:nth-child(2)
+            top: 0
+            height: 83%
+
+            span
+              font-family: $playfair-bold
+              font-size: 8.8em
+
+          &:nth-child(3)
+            bottom: 0
+            height: 54%
+
+            span
+              font-family: $playfair-bold
+              font-size: 2.9em
+
+    &_title
+      font-family: $museo-sans-900
+      font-size: 55px
+      line-height: 1.2
+      text-transform: uppercase
+
+      em
+        white-space: nowrap
+
+      span
+        display: inline-block
+        margin-left: 10px
+        vertical-align: baseline
+        font-size: 12px
+
+      &:after
+        content: ''
+        display: block
+        width: 75%
+        height: 7px
+        margin-bottom: 3%
+        background: #ea1b25
+
+    &_description
+      font-family: $clear-sans-regular
+      font-size: 23px
+      line-height: 1.3
+
+  &_secondary
+    position: relative
+
+    &_list
+      font-size: 0
+      line-height: 0
+      margin-right: -3%
+
+    &_item
+      display: inline-block
+      width: 25%
+      padding-right: 3%
+      padding-bottom: 3.8%
+      vertical-align: top
+
+      dt
+        margin-bottom: 10px
+        font-family: $clear-sans-bold
+        font-size: 16px
+        line-height: 1.4
+        color: #ffd965
+
+      dd
+        font-family: $clear-sans-regular
+        font-size: 14px
+        line-height: 1.4

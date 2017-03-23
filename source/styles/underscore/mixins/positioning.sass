@@ -1,0 +1,340 @@
+// Underscore.css v0.0.1, http://git.io/vfX7n
+// ==========================================
+// Extremely time-saving Sass/SCSS/Stylus mixins library
+//
+// (c) Damir Sultanov and contributors
+// http://fronteed.com/underscore.css
+// MIT Licensed
+
+
+// Extended position
+//
+// @usage: +_p([optional: type] position)
+// @aliases: _p, _pos, _position, up, upos, uposition
+//
+// @param type - optional, positioning value
+//  keys:
+//    a, abs, absolute => absolute
+//    r, rel, relative => relative
+//    f, fix, fixed => fixed
+//    s, st, static => static
+//    inh, inherit => inherit
+// @param position - required, direction values, space delimited (top right bottom left)
+//  keys:
+//    t, top => top: 0;
+//    r, right => right: 0;
+//    b, bottom => bottom: 0;
+//    l, left => left: 0;
+//    tl, lt => top: 0; left: 0;
+//    tr, rt => top: 0; right: 0;
+//    bl, lb => bottom: 0; left: 0;
+//    br, rb => bottom: 0; right: 0;
+//    t{number} => top: {number}
+//    r{number} => right: {number}
+//    b{number} => bottom: {number}
+//    l{number} => left: {number}
+//    f, full => 100%
+//    h, half => 50%
+//    "x/y" => z% ("4/5" => 80%)
+//    a, auto => auto
+//    inh, inherit => inherit
+//    {number}, {number}px => {number}px
+//    {number}e, {number}em => {number}em
+//    {number}p, {number}% => {number}%
+
+=_p($arguments...)
+  $options: __arguments($arguments)
+  $length: length($options)
+  $position: false
+  $top: false
+  $right: false
+  $bottom: false
+  $left: false
+
+  @if $length > 0
+
+    // position
+    $value: nth($options, 1)
+
+    @if type-of($value) != "number"
+      @if index("a" "abs" "absolute", $value)
+        $position: "absolute"
+        $options: __removeFirst($options, "a" "abs" "absolute")
+      @else if index("r" "rel" "relative", $value)
+        $position: "relative"
+        $options: __removeFirst($options, "r" "rel" "relative")
+      @else if index("f" "fix" "fixed", $value)
+        $position: "fixed"
+        $options: __removeFirst($options, "f" "fix" "fixed")
+      @else if index("s" "st" "static", $value)
+        $position: "static"
+        $options: __removeFirst($options, "s" "st" "static")
+      @else if index("inh" "inherit", $value)
+        $position: "inherit"
+        $options: __removeFirst($options, "inh" "inherit")
+    @if $position != false
+      position: unquote($position)
+      $length: length($options)
+
+  // direction
+  @if $length > 0
+
+    // cover
+    @if __exist($options, "c" "cv" "cover")
+      $top: 0
+      $right: 0
+      $bottom: 0
+      $left: 0
+
+    @else
+
+      // top, right, bottom, left, t, r, b, l
+      @each $value in $options
+        @if type-of($value) != "number"
+          $value: $value + ""
+
+          @if index("top" "right" "bottom" "left" "t" "r" "b" "l", $value)
+            @if index("top" "t", $value)
+              $top: 0
+            @else if index("right" "r", $value)
+              $right: 0
+            @else if index("bottom" "b", $value)
+              $bottom: 0
+            @else if index("left" "l", $value)
+              $left: 0
+
+            $options: __remove($options, $value, true)
+            $length: length($options)
+
+      @if $length > 0
+
+        // tl, tr, bl, br
+        @each $value in $options
+          @if type-of($value) != "number"
+            $value: $value + ""
+
+            @if str-length($value) == 2
+              @if index("tl" "lt" "tr" "rt" "bl" "lb" "br" "rb", $value)
+                @if $value == "tl" or $value == "lt"
+                  $top: 0
+                  $right: false
+                  $bottom: false
+                  $left: 0
+                @else if $value == "tr" or $value == "rt"
+                  $top: 0
+                  $right: 0
+                  $bottom: false
+                  $left: false
+                @else if $value == "bl" or $value == "lb"
+                  $top: false
+                  $right: false
+                  $bottom: 0
+                  $left: 0
+                @else if $value == "br" or $value == "rb"
+                  $top: false
+                  $right: 0
+                  $bottom: 0
+                  $left: false
+
+                $options: __remove($options, $value, true)
+                $length: length($options)
+
+        @if $length > 0
+
+          // t#, b#, l#, r#
+          @each $value in $options
+            @if type-of($value) != "number"
+              $value: $value + ""
+              $prefix: str-slice($value, 1, 1)
+              $string: __unit(str-slice($value, 2))
+
+              @if index("t" "b" "l" "r", $prefix)
+                @if $prefix == "t"
+                  $top: $string
+                @else if $prefix == "b"
+                  $bottom: $string
+                @else if $prefix == "l"
+                  $left: $string
+                @else if $prefix == "r"
+                  $right: $string
+
+                $options: __remove($options, $value)
+                $length: length($options)
+
+          @if $length > 0
+            @each $value in $options
+              @if $top == false
+                $top: __unit($value)
+              @else if $right == false
+                $right: __unit($value)
+              @else if $bottom == false
+                $bottom: __unit($value)
+              @else if $left == false
+                $left: __unit($value)
+
+    @if $top != false
+      top: $top
+    @if $right != false
+      right: $right
+    @if $bottom != false
+      bottom: $bottom
+    @if $left != false
+      left: $left
+
+=_pos($aguments...)
+  +_p($aguments...)
+
+=_position($aguments...)
+  +_p($aguments...)
+
+=up($aguments...)
+  +_p($aguments...)
+
+=upos($aguments...)
+  +_p($aguments...)
+
+=uposition($aguments...)
+  +_p($aguments...)
+
+
+// Clearing floats (clearfix)
+//
+// @usage: +_cf(optional: legacy)
+// @aliases: _cf, _clear, _fix, _clearfix, ucf, uclear, ufix, uclearfix
+//
+// @param legacy - optional, legacy browsers support
+//  keys:
+//    l, leg, legacy => legacy
+
+=_cf($arguments...)
+  $values: __arguments($arguments)
+  $length: length($values)
+  $legacy: null
+
+  @if $_l == true or $_legacy == true
+    $legacy: true
+  @if $length > 0 and $legacy == null
+    @if __exist($values, "l" "leg" "legacy")
+      $legacy: true
+
+  @if $legacy == true
+    *zoom: 1
+    &:before,
+    &:after
+      content: ''
+      display: table
+    &:after
+      clear: both
+  @else
+    &:after
+      content: ''
+      display: table
+      clear: both
+
+=_clear($arguments...)
+  +_cf($arguments...)
+
+=_fix($arguments...)
+  +_cf($arguments...)
+
+=_clearfix($arguments...)
+  +_cf($arguments...)
+
+=ucf($arguments...)
+  +_cf($arguments...)
+
+=uclear($arguments...)
+  +_cf($arguments...)
+
+=ufix($arguments...)
+  +_cf($arguments...)
+
+=uclearfix($arguments...)
+  +_cf($arguments...)
+
+
+// Inline block
+//
+// @usage: +_ib(optional: align legacy)
+// @aliases: _ib, _inlineblock, _inline-block, uib, uinlineblock, uinline-block
+//
+// @param align - optional, vertical alignment
+//	keys:
+//		bl, baseline => baseline
+//		b, bottom => bottom
+//		m, middle => middle
+//		t, top => top
+// @param legacy - optional, legacy browsers support
+//  keys:
+//    l, leg, legacy => legacy
+
+=_ib($arguments...)
+  $values: __arguments($arguments)
+  $align: "top"
+  $legacy: null
+
+  @if length($values) > 0
+    @each $value in $values
+      @if index("t" "top", $value)
+        $align: "top"
+      @else if index("b" "bottom", $value)
+        $align: "bottom"
+      @else if index("m" "middle", $value)
+        $align: "middle"
+      @else if index("bl" "baseline", $value)
+        $align: "baseline"
+      @else if index("l" "leg" "legacy", $value)
+        $legacy: true
+
+  @if $_l == true or $_legacy == true
+    $legacy: true
+
+  @if $legacy == true
+    *display: inline
+  display: inline-block
+  vertical-align: unquote($align)
+  @if $legacy == true
+    *zoom: 1
+
+=_inlineblock($arguments...)
+  +_ib($arguments...)
+
+=_inline-block($arguments...)
+  +_ib($arguments...)
+
+=uib($arguments...)
+  +_ib($arguments...)
+
+=uinlineblock($arguments...)
+  +_ib($arguments...)
+
+=uinline-block($arguments...)
+  +_ib($arguments...)
+
+
+// justified blocks
+=_j()
+  font-size: 0
+  line-height: 0
+  text-align: justify
+  text-align-last: justify
+  text-justify: newspaper
+
+  &:after
+    content: ''
+    display: inline-block
+    width: 100%
+    height: 0
+    visibility: hidden
+    overflow: hidden
+    vertical-align: top
+
+// justified block
+=_jb($fontsize: null, $lineheight: null, $textalign: 'left')
+  +_ib(top)
+  @if $fontsize
+    font-size: unquote($fontsize)
+  @if $lineheight
+    line-height: unquote($lineheight)
+  text-align: unquote($textalign)
+  text-align-last: unquote($textalign)

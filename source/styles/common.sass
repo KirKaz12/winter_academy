@@ -1,0 +1,65 @@
+/*
+ * (c) Supercoders
+ * http://supercoders.ru
+ * info@supercoders.ru
+ */
+
+// mixins
+@mixin max($value)
+  @media (max-width: $value + 'px')
+    @content
+
+@mixin min($value)
+  @media (min-width: $value + 'px')
+    @content
+
+// primary
+@import 'underscore/bundle'
+
+// sprites
+// $bg: sprite-map('sprite/*.png', $spacing: 5px)
+// $bg2x: sprite-map('sprite2x/*.png', $spacing: 5px)
+// +_use(bg $bg $bg2x)
+// +_sprite(filename full size)
+// +_sprite(filename sprite pos)
+
+// fonts
++_webfont(ClearSansBold clearsans-bold)
+$clear-sans-bold: ClearSansBold, $_sans
++_webfont(ClearSansRegular clearsans-regular)
+$clear-sans-regular: ClearSansRegular, $_sans
+
++_webfont(MuseoSans300 museosanscyrl300)
+$museo-sans-300: MuseoSans300, $_sans
++_webfont(MuseoSans500 museosanscyrl500)
+$museo-sans-500: MuseoSans500, $_sans
++_webfont(MuseoSans700 museosanscyrl700)
+$museo-sans-700: MuseoSans700, $_sans
++_webfont(MuseoSans900 museosanscyrl900)
+$museo-sans-900: MuseoSans900, $_sans
+
++_webfont(PlayfairDisplayBold playfairdisplay-bold)
+$playfair-bold: PlayfairDisplayBold, $_sans
+
++_webfont(RobotoRegular roboto-regular)
+$roboto-regular: RobotoRegular, $_sans
+
+// metrics
+$offset: 0 8%
+$holder: 1600px
+
+// secondary
+@import '_similize'
+@import '_helpers'
+@import '_layout'
+@import '_header'
+@import '_content'
+@import '_footer'
+@import '_adaptive'
+@import '_animation'
+
+// tertiary
++s-print()
+
+// background: linear-gradient(to top, black, white);
+// background: linear-gradient(to bottom, black, white);

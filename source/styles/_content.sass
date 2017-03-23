@@ -1,0 +1,1511 @@
+// content
+.benefits
+  position: relative
+  background: #fafafa url(../images/bg-benefits-gradient.png) 0 0 repeat-x
+
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    max-width: 1400px
+    margin: auto
+    background: url(../images/bg-benefits.png) 50% 0 no-repeat
+
+  &_left,
+  &_right
+    position: absolute
+    width: 20%
+
+    &:before
+      content: ''
+      display: block
+      background-size: cover
+      background-repeat: no-repeat
+
+  &_left
+    left: 0
+    top: 160px
+    width: 19.4%
+    max-width: 325px
+
+    &:before
+      padding-bottom: 70%
+      background-position: 0 50%
+
+      .app-loaded &
+        background-image: url(../images/bg-benefits-left.png)
+
+
+  &_right
+    right: 0
+    top: 55px
+    width: 17.7%
+    max-width: 295px
+
+    &:before
+      padding-bottom: 177%
+      background-position: 100% 50%
+
+      .app-loaded &
+        background-image: url(../images/bg-benefits-right.png)
+
+  &_inner
+    position: relative
+
+  &_heading
+    margin: 0 16%
+
+    &_inner
+      max-width: 1000px
+      margin: 0 auto
+      font-size: 10px
+      text-align: center
+      background: #fff
+
+    &_title
+      padding-top: 7%
+      padding-bottom: 3%
+      font-family: $museo-sans-900
+      font-size: 5.6em
+      line-height: 1.2
+
+      em
+        position: relative
+        display: block
+
+        &:before
+          content: ''
+          position: absolute
+          top: 20%
+          bottom: 20%
+          left: 0
+          right: 0
+          background: url(../images/splash.png) 50% no-repeat
+          background-size: contain
+
+        span
+          position: relative
+
+    &_description
+      padding-bottom: 7%
+      font-family: $museo-sans-500
+      font-size: 2.4em
+
+  &_list
+    padding: 0 5% 6%
+    font-size: 0
+    line-height: 0
+
+  &_item
+    display: inline-block
+    width: 50%
+    padding: 4.5% 3% 0
+    font-size: 10px
+    vertical-align: top
+    text-align: center
+
+    &_icon
+      margin-bottom: 15px
+
+      .icon
+        display: inline-block
+        width: 33px
+        height: 27px
+        color: #ec463f
+
+    &_description
+      font-family: $museo-sans-300
+      font-size: 1.6em
+      line-height: 1.75
+
+.reasons
+  text-align: center
+
+  &_title
+    padding: 6% 0
+    font-family: $museo-sans-900
+    font-size: 60px
+    line-height: 1.2
+
+  &_list
+    margin-right: -1%
+    padding-bottom: 4.5%
+    // font-size: 0
+    // line-height: 0
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: center
+    align-content: flex-start
+    align-items: stretch
+
+  &_item
+    // display: inline-block
+    flex: 0 1 33%
+    width: 33%
+    padding: 0 3% 6.6%
+    // vertical-align: top
+
+    &_icon
+      margin-bottom: 12px
+      height: 60px
+
+      &:before
+        content: ''
+        display: inline-block
+        height: 100%
+        vertical-align: middle
+
+      .icon
+        display: inline-block
+        vertical-align: middle
+
+        &__calendar
+          width: 52px
+          height: 52px
+          color: #ec463f
+
+        &__smile
+          width: 55px
+          height: 55px
+          color: #fdc02f
+
+        &__useful
+          width: 48px
+          height: 56px
+          color: #673fb4
+
+        &__modular
+          width: 70px
+          height: 52px
+          color: #2cbcd2
+
+        &__sections
+          width: 60px
+          height: 40px
+          color: #664c9c
+
+    &_title
+      margin-bottom: 20px
+      font-family: $museo-sans-900
+      font-size: 20px
+      line-height: 1.2
+      color: #000
+
+    &_description
+      font-size: 15px
+      line-height: 1.47
+      color: #696969
+
+.contents
+  // +s-clear
+  border-top: 1px solid #ccc
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: flex-start
+  align-content: stretch
+  align-items: stretch
+
+  &_whom
+    position: relative
+    // float: left
+    flex: 0 0 58%
+    width: 58%
+    padding: 70px 30px 40px 6%
+    background-color: #1e1e1e
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    background-size: cover
+
+    // &:before
+    //   content: ''
+    //   position: absolute
+    //   top: 0
+    //   bottom: 0
+    //   left: 0
+    //   right: 0
+    //   background: url(../images/bg-whom.jpg) 50% no-repeat
+    //   background-size: cover
+
+    &_holder
+      // position: relative
+      max-width: ($holder * 0.58)
+      margin-right: 0
+
+    &_title
+      margin-bottom: 40px
+      font-family: $museo-sans-900
+      font-size: 40px
+      line-height: 1.2
+      color: #fff
+      text-align: center
+
+    &_description
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: flex-start
+      align-content: stretch
+      align-items: stretch
+
+    &_tabs
+      flex: 0 0 36%
+      padding-bottom: 1px
+      background: #f5f5f5
+
+      li
+        position: relative
+        // padding: 12px 5% 11px 11%
+        padding: 18px 5% 15px 11%
+        font-family: $clear-sans-bold
+        font-size: 16px
+        line-height: 1.4
+        text-transform: uppercase
+        border-top: 1px solid #ccc
+        border-left: 1px solid transparent
+        cursor: pointer
+        user-select: none
+
+        &:first-child
+          border-top-color: transparent
+
+        &.is-active
+          margin-right: -1px
+          margin-bottom: -1px
+          // padding-top: 18px
+          // padding-bottom: 15px
+          background: #fff
+          border-left: 1px solid #ccc
+          border-bottom: 1px solid #ccc
+          border-top-color: #ccc
+          cursor: default
+
+    &_sections
+      flex: 0 1 74%
+      padding: 25px 25px 25px 30px
+      background: #fff
+      border: 1px solid #ccc
+
+      li
+        display: none
+
+        &.is-active
+          display: block
+
+        p
+          margin-bottom: 5px
+
+  &_what
+    // float: right
+    flex: 0 0 42%
+    width: 42%
+    // padding: 60px 6% 40px 4%
+    padding: 50px 6% 30px 4%
+    text-align: center
+
+    &_holder
+      max-width: ($holder * 0.42)
+      margin-left: 0
+
+    &_title
+      margin-bottom: 30px
+      margin-left: -20px
+      margin-right: -20px
+      font-family: $museo-sans-900
+      font-size: 40px
+      line-height: 1.1
+      text-align: center
+
+    &_description
+      // margin-bottom: 50px
+      margin-bottom: 30px
+      font-family: $museo-sans-300
+      font-size: 16px
+      line-height: 1.5
+
+  &_certificate
+    img
+      max-width: 70%
+
+.teachers
+  &_title
+    &_holder
+      padding-top: 35px
+
+    &_text
+      position: relative
+      display: inline-block
+      vertical-align: bottom
+      padding: 22px 60px 22px 0
+      font-family: $museo-sans-900
+      font-size: 50px
+      line-height: 1
+      color: #fff
+      background: #db1f2c
+
+      &:before
+        content: ''
+        position: absolute
+        right: 100%
+        top: 0
+        bottom: 0
+        margin-right: -1px
+        width: 1000px
+        background: inherit
+
+    ins
+      position: absolute
+      height: 100%
+      left: 100%
+      top: 0
+      bottom: 0
+      overflow: hidden
+
+      &:before
+        content: ''
+        display: block
+        width: 0
+        height: 0
+        border-right: 50px solid transparent
+        border-bottom: 100px solid #db1f2c
+
+    &_media
+      display: inline-block
+      margin-left: 20px
+      max-width: 40%
+      vertical-align: bottom
+
+  &_content
+    background: #efefef
+
+    &_holder
+      &:after
+        content: ''
+        display: block
+        padding-top: 5%
+
+    &_inner
+      margin: 0 -15px
+
+  &_slides
+    visibility: hidden
+    padding: 2.5% 0
+
+    &.owl-carousel
+      visibility: visible
+
+  &_slide
+    padding: 0 15px
+
+    &_face
+      position: absolute
+      bottom: -1px
+      left: 15px
+      width: 40%
+      max-width: 260px
+      height: 90%
+      font-size: 0
+      line-height: 0
+      white-space: nowrap
+
+      &:before
+        content: ''
+        display: inline-block
+        height: 100%
+        vertical-align: bottom
+
+      img
+        display: inline-block
+        max-width: 100%
+        max-height: 100%
+        vertical-align: bottom
+
+    &_content
+      padding: 9% 10px 5% 38%
+
+    &_title
+      display: inline-block
+      margin-right: 25px
+      margin-bottom: 20px
+      vertical-align: top
+      font-family: $museo-sans-900
+      font-size: 28px
+      line-height: 1.2
+      text-transform: uppercase
+
+    &_connect
+      display: inline-block
+      padding-top: 5px
+      vertical-align: top
+
+    &_social
+      margin-bottom: 15px
+
+      li
+        flex: 0 0 auto
+        width: 40px
+        height: 26px
+        margin-left: 6px
+
+    &_phone
+      margin-bottom: 20px
+      font-family: $museo-sans-500
+      font-size: 14px
+
+    &_topics
+      font-family: $museo-sans-300
+      font-size: 16px
+
+      &:after
+        content: ''
+        display: block
+        width: 85%
+        height: 0
+        margin-top: 10px
+        border-top: 1px solid #ebebeb
+
+    &_meta
+      display: table
+      width: 100%
+
+      dl
+        display: table-row
+
+      dt
+        display: table-cell
+        padding-right: 20px
+        padding-top: 15px
+        vertical-align: top
+        font-family: $museo-sans-300
+        font-size: 14px
+
+      dd
+        display: table-cell
+        width: 100%
+        padding-top: 15px
+        vertical-align: top
+        font-family: $museo-sans-500
+        font-size: 15px
+        line-height: 1.2
+
+      p,
+      li
+        padding-left: 15px
+        margin-top: 8px
+
+        &:first-child
+          margin-top: 0
+
+      li
+        position: relative
+
+        &:before
+          content: ''
+          position: absolute
+          top: 4px
+          left: 0
+          border-left: 7px solid #db1f2c
+          border-top: 4px solid transparent
+          border-bottom: 4px solid transparent
+
+    &_content
+      position: relative
+
+  .owl-wrapper-outer
+    padding: 30px 0
+
+  .owl-wrapper
+    display: flex !important
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-content: stretch
+    align-items: stretch
+
+  .owl-item
+    position: relative
+    flex: 0 0 auto
+
+    &:before
+      content: ''
+      position: absolute
+      right: 15px
+      left: 15px
+      top: 0
+      bottom: 0
+      box-shadow: 0 5px 10px rgba(1, 1, 1, 0.2)
+      background-color: #fff
+      // background: #aaa
+
+      .app-loaded &
+        background: url(../images/frame.png) 0 100% no-repeat
+        background-size: cover
+
+  .owl-pagination
+    position: absolute
+    left: 0
+    right: 0
+    margin-top: 20px
+
+.students
+  &_holder
+    &:after
+      content: ''
+      display: block
+      padding-top: 5%
+
+  .owl-wrapper-outer
+    padding: 30px 0
+
+  .owl-wrapper
+    display: flex !important
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-content: stretch
+    align-items: stretch
+
+  .owl-item
+    position: relative
+    flex: 0 0 auto
+
+    &:before
+      content: ''
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 15px
+      right: 15px
+      background: #efefef
+
+  .owl-pagination
+    position: absolute
+    left: 0
+    right: 0
+    margin-top: 20px
+
+  &_title
+    padding-top: 4.5%
+    font-family: $museo-sans-900
+    font-size: 50px
+    line-height: 1.1
+    text-align: center
+
+  &_inner
+    margin: 0 -15px
+
+  &_slides
+    visibility: hidden
+    padding: 2.5% 0
+
+    &.owl-carousel
+      visibility: visible
+
+  &_slide
+    padding: 0 15px
+
+    &_icon
+      position: absolute
+      top: 15%
+      right: 15px
+      overflow: hidden
+
+      .icon
+        width: 52px
+        height: 46px
+        margin-right: -8px
+        color: #d7d7d7
+
+    &_image
+      position: absolute
+      left: 15px
+      top: 0
+      bottom: 0
+      width: 35%
+      overflow: hidden
+      background-repeat: no-repeat
+      background-position: 50% 50%
+      background-size: cover
+
+    &_content
+      position: relative
+      margin-left: 35%
+      padding: 8% 20px 5% 40px
+
+    &_title
+      margin-bottom: 20px
+      font-size: 16px
+      color: #181818
+
+    &_text
+      font-size: 15px
+      line-height: 1.3
+
+.modules
+  background: #efefef
+
+  &_title
+    padding-top: 4.5%
+    font-family: $museo-sans-900
+    font-size: 50px
+    line-height: 1.1
+    text-align: center
+
+  &_toggle
+    padding-top: 4%
+    padding-bottom: 4.5%
+    text-align: center
+
+    ins
+      position: relative
+      display: inline-block
+      vertical-align: middle
+      width: 88px
+      height: 44px
+      margin: 0 auto
+      background: #ddd
+      border-radius: 22px
+      padding: 2px
+      transition: .4s ease
+      cursor: pointer
+
+      &:after
+        content: ''
+        position: relative
+        left: 0
+        display: block
+        width: 50%
+        height: 100%
+        background: #fff
+        border: 1px solid #f2f2f2;
+        border-radius: 50%
+        transition: left .3s cubic-bezier(0.175, 0.885, 0.320, 1.275)
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.25);
+
+      &.is-active
+        background-color: #25bfd6
+
+        &:after
+          left: 50%
+
+    span
+      display: inline-block
+      padding-left: 15px
+      vertical-align: middle
+      font-family: $museo-sans-300
+      font-size: 14px
+      line-height: 1.1
+      text-align: left
+
+  &_list
+    counter-reset: modules
+    margin-right: -1%
+    padding-bottom: 5%
+    // font-size: 0
+    // line-height: 0
+
+    &.is-active
+      .modules_item_steps,
+      .modules_item_extra
+        display: block
+
+      .modules_item_title
+        margin-bottom: 25px
+
+  &_items
+    display: flex
+    max-width: ($holder * 0.75)
+    margin: 0 auto
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-around
+    align-content: flex-start
+    align-items: stretch
+
+  &_item
+    counter-increment: modules
+    position: relative
+    // display: inline-block
+    // vertical-align: top
+    flex: 0 1 33%
+    width: 33%
+    margin-bottom: 50px
+    // text-align: left
+
+    &:before
+      content: ''
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      background: url(../images/book.png) no-repeat
+      background-size: 100% 100%
+
+    &_inner
+      padding: 45px 15% 110px 18%
+      line-height: 1.2
+
+    &_title
+      position: relative
+      padding-left: 25px
+      min-height: 42px
+      margin-bottom: 15px
+      font-family: $museo-sans-900
+      font-size: 18px
+      color: #673ab7
+      text-transform: uppercase
+
+      &:before
+        content: counters(modules, ".", decimal-leading-zero) "."
+        position: absolute
+        left: 0
+        top: 4px
+        font-family: $museo-sans-500
+        font-size: 12px
+        color: #000
+
+    &_date
+      position: relative
+      padding-left: 20px
+      font-family: $museo-sans-300
+      font-size: 12px
+      line-height: 20px
+
+      ins
+        display: inline-block
+        margin-right: 3px
+        vertical-align: middle
+        opacity: .6
+
+      span
+        display: inline-block
+        height: 20px
+        padding: 0 15px
+        vertical-align: middle
+        background: #e5e5e5
+        border-radius: 10px
+
+    &_steps
+      position: relative
+      display: none
+      margin-top: 30px
+      margin-bottom: 20px
+      font-family: $museo-sans-300
+      font-size: 14px
+
+      li
+        position: relative
+        margin-bottom: 14px
+        padding-left: 20px
+
+        &:before
+          content: ''
+          position: absolute
+          left: 0
+          top: 4px
+          width: 0
+          height: 0
+          border: 6px solid #db1f2c
+          border-top: 3px solid transparent
+          border-bottom: 3px solid transparent
+          border-right: none
+
+    &_extra
+      position: relative
+      display: none
+      margin-bottom: 20px
+      padding-left: 20px
+      font-family: $museo-sans-300
+      font-size: 14px
+
+      strong
+        font-family: $museo-sans-700
+
+    &_action
+      position: absolute
+      bottom: 7%
+      left: 18%
+      margin-left: 15px
+      margin-bottom: 30px
+
+      a
+        display: inline-block
+        padding: 11px 13px
+        font-family: $museo-sans-700
+        font-size: 14px
+        text-transform: uppercase
+        color: #000
+        transition: .4s
+        background: #fbd03b
+
+        &:hover
+          background: darken(#fbd03b, 5%)
+
+.choice
+  padding-bottom: 160px
+  background-color: #1e1e1e
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  background-size: cover
+
+  &_title
+    max-width: 800px
+    margin: 0 auto
+    padding-top: 5.5%
+    padding-bottom: 4.5%
+    font-family: $museo-sans-900
+    font-size: 50px
+    line-height: 1.1
+    color: #fff
+    text-align: center
+
+  &_inner
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-content: stretch
+    align-items: stretch
+    margin-bottom: 3%
+    background: #fff
+
+  &_content
+    border-right: 2px solid #202529
+    flex: 0 0 61%
+    width: 61%
+    padding: 0 3.5%
+    overflow: hidden
+
+    &_title
+      margin-bottom: 3.5%
+      padding-top: 6%
+      font-family: $museo-sans-700
+      font-size: 26px
+      text-transform: uppercase
+
+    &_tabs
+      padding-bottom: 3.5%
+      margin: 0 -6px
+
+      &_inner
+        display: table
+        width: 100%
+        border-collapse: separate
+        border-spacing: 6px
+
+    &_tab
+      position: relative
+      display: table-cell
+      vertical-align: middle
+      text-align: center
+      text-transform: uppercase
+      user-select: none
+
+      &:first-child
+        margin-left: 0
+
+      input
+        display: none
+
+      label
+        display: block
+        padding: 13px 10px
+        font-family: $museo-sans-500
+        font-size: 14px
+        line-height: 1.2
+        transition: color .4s
+        cursor: pointer
+
+        &:before
+          content: ''
+          position: absolute
+          top: 0
+          bottom: 0
+          left: 0
+          right: 0
+          border: 1px solid #ccc
+          transition: .4s
+
+        &:hover
+          &:before
+            background: lighten(#00abd4, 50%)
+            border-color: #00abd4
+
+      span
+        position: relative
+
+      &.is-active
+        a
+          color: #fff
+          cursor: default
+
+          &:before
+            background: #00abd4
+            border-color: #00abd4
+
+    &_table
+      width: 100%
+      margin-bottom: 7%
+
+      td
+        span
+          white-space: nowrap
+
+        &:nth-child(1)
+          width: 10%
+          min-width: 40px
+          text-align: right
+
+        &:nth-child(2)
+          width: 40%
+          padding-right: 15px
+          text-align: left
+
+        &:nth-child(3)
+          width: 15%
+          padding-left: 15px
+          padding-right: 15px
+          text-align: center
+
+        &:nth-child(4)
+          width: 35%
+          padding-left: 15px
+          padding-right: 15px
+          text-align: left
+
+      thead
+        td
+          padding-bottom: 5px
+          font-family: $museo-sans-500
+          font-size: 14px
+          color: #2e2e2e
+          text-transform: uppercase
+
+      tbody
+        td
+          padding-top: 10px
+          padding-bottom: 10px
+          height: 100%
+          vertical-align: middle
+          background: #efefef
+          border-top: 1px solid #fff
+          cursor: pointer
+
+          &:nth-child(1)
+            padding-right: 15px
+            text-align: right
+
+          &:nth-child(2)
+            font-family: $museo-sans-700
+            font-size: 14px
+            color: #de1b24
+            line-height: 1.2
+            text-transform: uppercase
+
+          &:nth-child(3)
+            font-family: $museo-sans-700
+            font-size: 16px
+
+          &:nth-child(4)
+            font-family: $museo-sans-500
+            font-size: 14px
+
+  &_side
+    flex: 0 1 39%
+    width: 39%
+    background: #00abd4
+
+  &_sum
+    padding: 8% 8% 4% 16%
+    background: #fff
+
+    &_title
+      margin-bottom: 15px
+      font-family: $clear-sans-bold
+      font-size: 26px
+      color: #de1b24
+      text-transform: uppercase
+
+    &_prices
+      max-width: 500px
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: flex-start
+      align-content: stretch
+      align-items: stretch
+      margin-bottom: 15px
+
+    &_price
+      flex: 0 0 auto
+      font-family: $museo-sans-500
+      color: #a2a2a2
+      line-height: 1
+
+      &:first-child
+        margin-right: 10%
+        padding-right: 10%
+        border-right: 2px solid #ccc
+
+      em
+        margin-right: 3px
+
+      span
+        display: block
+        margin-bottom: 10px
+        font-size: 11px
+        text-transform: uppercase
+
+      strong
+        display: block
+        font-size: 25px
+
+      &__highlight
+        .choice_sum_price_inner
+          position: relative
+
+          &:before
+            content: ''
+            position: absolute
+            top: -20%
+            bottom: -20%
+            left: -20%
+            right: -20%
+            background: url(../images/splash-2.png) 50% no-repeat
+            background-size: 100% 100%
+
+        em
+          margin-right: 5px
+
+        span
+          position: relative
+          margin-bottom: 5px
+          font-size: 12px
+          color: #de1b24
+
+        strong
+          position: relative
+          font-size: 33px
+          color: #000
+
+    &_discount
+      color: #2e2e2e
+
+      input
+        display: inline-block
+        margin-right: 10px
+        vertical-align: middle
+
+      label
+        font-family: $museo-sans-500
+        font-size: 14px
+        line-height: 1.2
+
+  &_form
+    padding: 5% 8% 10%
+
+    &_title
+      margin-bottom: 5px
+      font-family: $museo-sans-700
+      font-size: 26px
+      text-align: center
+      text-transform: uppercase
+
+    &_note
+      font-family: $museo-sans-700
+      font-size: 18px
+      color: #f8f212
+      text-align: center
+      text-transform: uppercase
+
+    &_fields
+      margin-top: 6%
+      padding-left: 15%
+      padding-right: 15%
+
+      &_inner
+        max-width: 400px
+        margin-left: auto
+        margin-right: auto
+
+    &_set
+      margin-bottom: 4.5%
+
+      .field
+        background: #fff
+        border: 1px solid #fff !important
+
+        &.is-invalid
+          box-shadow: inset 5px 0 rgba(255,0,0,0.75)
+
+        &-message
+          color: #fff
+
+    &_submit
+      button
+        display: block
+        width: 100%
+        color: #000
+        background: #ffc107
+
+        .app-desktop &:hover
+          background: lighten(#ffc107, 8%)
+
+    .form_message
+      color: #fff
+      background: rgba(#00aad6,.9)
+      transform: translate3d(0,0,0) !important
+
+      strong
+        font-size: 19px
+
+      em
+        font-size: 18px
+
+    &_phone
+      padding-top: 8%
+      font-family: $museo-sans-500
+      font-size: 20px
+      color: #fff
+      text-align: center
+
+.how
+  position: relative
+  background-color: #ddd
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  background-size: cover
+
+  &_info
+    position: relative
+    float: left
+    width: 49%
+    margin-top: -160px
+    padding-right: 0
+    background: #fff
+
+    &_inner
+      max-width: ($holder * 0.485)
+      margin-left: auto
+      padding-right: 8%
+
+    &_title
+      padding-top: 9.5%
+      padding-bottom: 6%
+      font-family: $museo-sans-900
+      font-size: 38px
+      line-height: 1.2
+
+    &_description
+      padding-bottom: 17%
+      font-family: $museo-sans-300
+      font-size: 18px
+      line-height: 1.7
+
+  &_connect
+    position: relative
+    float: right
+    width: 51%
+    margin-top: -130px
+    padding-left: 0
+
+    &_list
+      display: table
+      width: 100%
+      max-width: ($holder * 0.515)
+      background: #efefef
+
+    &_item
+      display: table-cell
+      width: 33%
+      // padding: 45px 4% 30px
+      padding: 45px 4%
+      text-align: center
+      border-left: 1px solid #ccc
+
+      &:first-child
+        border-left: none
+
+      &_icon
+        height: 60px
+        margin-bottom: 20px
+
+        &:before
+          content: ''
+          display: inline-block
+          height: 100%
+          vertical-align: middle
+
+        .icon
+          display: inline-block
+          vertical-align: middle
+          color: #58585a
+
+          &__tablet
+            width: 38px
+            height: 52px
+
+          &__billboard
+            width: 52px
+            height: 44px
+
+          &__keyboard
+            width: 50px
+            height: 52px
+
+      &_title
+        font-family: $museo-sans-300
+        font-size: 14px
+        line-height: 1.3
+
+  &_spacer
+    clear: both
+
+    &_holder
+      &:before
+        content: ''
+        display: block
+        padding-top: 14%
+
+.discount
+  &_title
+    margin-top: -4%
+    margin-bottom: 5%
+    margin-left: -25px
+
+    span
+      display: inline-block
+      max-width: 100%
+      padding: 32px 25px
+      font-family: $museo-sans-900
+      font-size: 38px
+      color: #fff
+      text-transform: uppercase
+      background: #de1b24
+
+  &_columns
+    +s-clear
+    padding-bottom: 11%
+
+  &_contents
+    float: left
+    width: 62%
+    margin-left: -25px
+
+    &_inner
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      justify-content: flex-start
+      align-content: stretch
+      align-items: stretch
+
+  &_social
+    float: right
+    width: 34%
+    max-width: 500px
+    padding-top: 5px
+
+    &_note
+      padding-bottom: 8%
+      font-family: $museo-sans-500
+      font-size: 20px
+      line-height: 1.5
+
+  &_tabs
+    flex: 0 0 34%
+    padding-bottom: 1px
+    background: #f5f5f5
+
+    li
+      position: relative
+      padding: 28px 5% 27px 12%
+      font-family: $museo-sans-500
+      font-size: 20px
+      line-height: 1.4
+      text-transform: uppercase
+      border-top: 1px solid #ccc
+      border-left: 1px solid transparent
+      cursor: pointer
+      user-select: none
+
+      &:first-child
+        border-top-color: transparent
+
+      &.is-active
+        margin-right: -1px
+        margin-bottom: -1px
+        color: #de1b24
+        background: #fff
+        border-left: 1px solid #ccc
+        border-bottom: 1px solid #ccc
+        border-top-color: #ccc
+        cursor: default
+
+  &_sections
+    flex: 0 1 76%
+    padding: 30px 5% 35px 7%
+    font-family: $museo-sans-300
+    font-size: 20px
+    line-height: 1.5
+    background: #fff
+    border: 1px solid #ccc
+
+    li
+      display: none
+
+      &.is-active
+        display: block
+
+      p
+        margin-bottom: 5px
+
+.bonus
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: flex-start
+  align-content: stretch
+  align-items: stretch
+
+  &_content
+    position: relative
+    flex: 0 0 50%
+    width: 50%
+    padding-right: 0
+
+    &_inner
+      max-width: ($holder * 0.5)
+      margin-left: auto
+      padding-right: 8%
+
+  &_form
+    max-width: 80%
+    margin-bottom: 20px
+
+    &_fields
+      max-width: 400px
+
+    &_set
+      margin-bottom: 11px
+
+    &_submit
+      margin-top: 11%
+
+  &_note
+    padding-bottom: 6%
+    font-family: $museo-sans-500
+    font-size: 14px
+
+  &_title
+    margin-top: -10px
+    margin-bottom: 6%
+    font-family: $museo-sans-900
+    font-size: 36px
+    line-height: 1.35
+    text-transform: uppercase
+
+    span
+      color: #fff
+      margin: 0 5px
+      padding: 0 5px
+      background: #facf4b
+      outline: 5px solid #facf4b
+
+  &_media
+    position: relative
+    flex: 0 0 50%
+    width: 50%
+
+    &_inner
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      height: 120%
+      background-repeat: no-repeat
+      background-position: 50% 50%
+      background-size: cover
+      transition: .4s
+
+    &_title
+      position: absolute
+      bottom: 8%
+      left: 15%
+      font-family: $museo-sans-500
+      font-size: 18px
+      color: #fff
+      text-transform: uppercase
+
+.questions
+  position: relative
+  background-color: #1e1e1e
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  background-size: cover
+
+  &_form
+    position: static
+
+    &_set,
+    &_submit
+      display: inline-block
+      margin: 0 10px
+      vertical-align: top
+
+    .form_message
+      color: #fff
+      background: rgba(0,0,0,.5)
+      transform: translate3d(0,0,0) !important
+
+      strong
+        font-size: 19px
+
+      em
+        font-size: 18px
+
+    &_set
+      width: 26%
+      text-align: left
+
+    .field
+      background: #fff
+      border: 1px solid #fff !important
+
+      &.is-invalid
+        box-shadow: inset 5px 0 rgba(255,0,0,0.75)
+
+      &-message
+        max-height: none
+        padding-top: 5px
+        color: lighten(rgb(255,0,0), 25%)
+
+    &.is-active
+      .questions_heading
+        opacity: .2
+
+  &_fields
+    padding-bottom: 7%
+    text-align: center
+
+  &_heading
+    padding-top: 7.5%
+    padding-bottom: 5.5%
+    color: #fff
+    text-align: center
+    transition: .3s
+
+  &_title
+    padding-bottom: 10px
+    font-family: $museo-sans-900
+    font-size: 36px
+    text-transform: uppercase
+
+  &_description
+    font-family: $museo-sans-500
+    font-size: 20px

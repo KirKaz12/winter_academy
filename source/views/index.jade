@@ -1,0 +1,767 @@
+- pageLang = 'ru'
+- pageTime = new Date().getTime()
+- pageTitle = 'Winter Academy'
+- images = "./images/"
+
+block variables
+  - variable = null
+
+doctype html
+html.app-nojs(lang= pageLang, data-prefix="app")
+  head
+    title= pageTitle
+    meta(charset='utf-8')
+    meta(content='width=device-width, initial-scale=1.0, minimal-ui' name='viewport')
+    meta(content='address=no' name='format-detection')
+    meta(content='telephone=no' name='format-detection')
+    link(href='./styles/common.css?' + pageTime rel='stylesheet')
+    script(src='./scripts/init.min.js')
+  body
+    .loader.js-loading
+    .layout
+      header.header
+        .header_primary
+          .header_primary_heading.offset
+            .header_primary_heading_holder.holder
+              .header_logo
+                a(href="#")
+                  <svg class="icon"><use xlink:href="#icon-logo"></use></svg>
+              nav.header_nav
+                ul.header_nav_list
+                  li: a.js-scroller(href="#about", data-target="#about") Об академии
+                  li: a.js-scroller(href="#teachers", data-target="#teachers") Преподаватели
+                  li: a.js-scroller(href="#shedule", data-target="#shedule") Учебный план
+                  li: a.js-scroller(href="#register", data-target="#register") Стоимость курса
+                  li: a.js-scroller(href="#discount", data-target="#discount") Скидки и бонусы
+          .header_intro.offset
+            .header_intro_holder.holder
+              .header_intro_offset
+                .header_intro_content
+                  h1.header_intro_title Самый ожидаемый финансовый курс <em>2016<span>года</span></em>
+                  .header_intro_description За 6 месяцев мы раскроем опыт работы в инвестиционнах банках, корпорациях, венчурных и хедж-фондах, а также поделимся знаниями, приобретенными в лучших университетах мира
+                .header_intro_badge
+                  .header_intro_badge_icon
+                    svg.icon
+                      use(xlink:href="#icon-tie")
+                  ul.header_intro_badge_meta
+                    li: span Старт Зимней<br> Академии
+                    li: span 3
+                    li: span декабря
+        .header_secondary.offset
+          .header_secondary_holder.holder
+            .header_secondary_list
+              dl.header_secondary_item
+                dt Курс подходит для новичков и специалистов
+                dd Чаще всего курс проходят студенты финансовых институтов, желающие получить опыт работы в современных финансовых организациях мира.
+              dl.header_secondary_item
+                dt 6 месяцев пройдут с максимальной отдачей
+                dd Вы спокойно сможете совмещать обучение с работой и учебой. Наши студенты ждут занятий с нетерпением.
+              dl.header_secondary_item
+                dt Информация уникальна и бесценна
+                dd Эксперты и авторы курса потратили десятки тысяч долларов на образование за рубежом, литературу и получили опыт работы в лучших финансовых
+              dl.header_secondary_item
+                dt Мы заряжены на успех
+                dd Курс проходит более 150-и студентов. За 6 месяцев вы обязательно найдете среди них друзей и единомышленников. Это бесценно
+      section.benefits#about
+        .benefits_left
+        .benefits_right
+        .benefits_inner.offset
+          .benefits_heading
+            .benefits_heading_inner
+              h2.benefits_heading_title <em><span>120 мест</span></em> из 200 уже выкуплены
+              .benefits_heading_description 6 действительно важных причин записаться на курс
+          .benefits_holder.holder
+            ul.benefits_list
+              li.benefits_item
+                .benefits_item_icon
+                  svg.icon
+                    use(xlink:href="#icon-checkbox")
+                .benefits_item_description Вам что нибудь говорят компании  Goldman Sachs, Роснано, Dream Team Investments, Русагро, «Группа Черкизово»? Люди, которые  участвовали в финансовой деятельности перечисленных компаний, будут читать Вам лекции.
+              li.benefits_item
+                .benefits_item_icon
+                  svg.icon
+                    use(xlink:href="#icon-checkbox")
+                .benefits_item_description Обычно здесь пишут про совокупный опыт и прочую скуку. Мы не из таких. Мы просто гарантируем Вам, что вы откроете для себя новые горизонты карьерного роста.
+              li.benefits_item
+                .benefits_item_icon
+                  svg.icon
+                    use(xlink:href="#icon-checkbox")
+                .benefits_item_description Да, мы будем Вам давать домашние задания. Только практика и постоянная вовлеченность в процесс. Мы действительно хотим, чтобы Вы стали успешным финансистом.
+              li.benefits_item
+                .benefits_item_icon
+                  svg.icon
+                    use(xlink:href="#icon-checkbox")
+                .benefits_item_description Мы раскрываем вам около 200 гб. обучающего материала.  Но Вы же понимаете, что дело не в объеме. Другие дарят терабайты, от которых мало пользы.
+              li.benefits_item
+                .benefits_item_icon
+                  svg.icon
+                    use(xlink:href="#icon-checkbox")
+                .benefits_item_description Всем прошедшим академию мы вручаем наш красивый аттест в рамочке с подписями всех преподавателей. Лучшие студенты получат рекомендательные письма на англ. и русском языках и возможность стажировки
+              li.benefits_item
+                .benefits_item_icon
+                  svg.icon
+                    use(xlink:href="#icon-checkbox")
+                .benefits_item_description Мы в тесном контакте с множеством финансовых организаций США и России. Мы знаем для каких специалистов открыты все двери. Мы знаем как вас сделать таковыми.
+      section.reasons.offset
+        .reasons_holder.holder
+          h2.reasons_title Почему сотни людей<br> выбрали нас?
+          ul.reasons_list
+            li.reasons_item
+              .reasons_item_icon
+                svg.icon.icon__calendar
+                  use(xlink:href="#icon-calendar")
+              .reasons_item_title Мобильность<br> и свобода
+              .reasons_item_description Всё обучение проходит в выходные. Всё, что вам нужно это интернет и любое устройство.
+            li.reasons_item
+              .reasons_item_icon
+                svg.icon.icon__smile
+                  use(xlink:href="#icon-smile")
+              .reasons_item_title У нас<br> не скучно
+              .reasons_item_description Вы устаете на работе и учебе, и думаете что это очередная нагрузка? Да, хорошие знания не даются легко, но в наших лекциях много диалогов, примеров и вы не заметите как пролетит время.
+            li.reasons_item
+              .reasons_item_icon
+                svg.icon.icon__useful
+                  use(xlink:href="#icon-useful")
+              .reasons_item_title Знания применимые<br> к&nbsp;жизни
+              .reasons_item_description Вы получите ценный багаж знаний от преподавателей, которые успешно работают в финансовой сфере по всему миру. Сможете задать любые вопросы, получать комментарии и перенимать опыт от зарубежных коллег.
+            li.reasons_item
+              .reasons_item_icon
+                svg.icon.icon__modular
+                  use(xlink:href="#icon-modular")
+              .reasons_item_title Гибкий выбор<br> модулей и занятий
+              .reasons_item_description Мы рекомендуем пройти полный 6-и месячный курс, но если по тем или иным причинам у вас не получается это, то вы можете приобрести модули отдельно.
+            li.reasons_item
+              .reasons_item_icon
+                svg.icon.icon__sections
+                  use(xlink:href="#icon-sections")
+              .reasons_item_title Широкий спектр<br> занятий
+              .reasons_item_description Финансовый анализ, налоги, Аудит и даже основы программирования. Где вы еще встретите такой комплекс тонко подобранных друг с другом востребованных знаний?
+      section.contents
+        .contents_whom.js-lazy(data-src=images + 'bg-whom.jpg')
+          .contents_whom_holder.holder
+            h2.contents_whom_title Для кого подходит<br> Зимняя Академия?
+            .contents_whom_description
+              ul.contents_whom_tabs
+                li.is-active.js-tab-toggle(data-type="whom" data-id="1") Ты студент, молодой специалист, стартапер
+                li.js-tab-toggle(data-type="whom" data-id="2") Начинающие профессионалы и выпускники
+                li.js-tab-toggle(data-type="whom" data-id="3") Опытные профессионалы
+              ul.contents_whom_sections
+                li.is-active.js-tab(data-type="whom" data-id="1")
+                  p Ты решил что финансы это твоя жизнь! И тебе недостаточно знаний, которые дают тебе в университете. Ты хочешь быть одним из крутых экспертов в своей области? Зимняя Академия даст тебе полный спектр практических финансовых знаний со всего мира, который ты не получишь в рамках высших учебных заведений. Всестороннее углубление в тонкости специализации поможет тебе определиться в каких областях финансов ты захочешь профессионально вырасти.
+                  p По итогам курса у тебя будет необходимый комплекс знаний и навыков для успешной карьеры в любой области финанса или для реализации собственного стартапа. Лучшие студенты курса проходят оплачиваемую летнюю стажировку в компаниях-партнерах по всему миру, поэтому сейчас у тебя есть уникальный шанс погрузиться в обучение Зимней Академии SF, не отрываясь от учебы в ВУЗе или работы.  Мы ждем тебя на курсе!
+                li.js-tab(data-type="whom" data-id="2")
+                  p Ты решил что финансы это твоя жизнь! И тебе недостаточно знаний, которые дают тебе в университете. Ты хочешь быть одним из крутых экспертов в своей области? Зимняя Академия даст тебе полный спектр практических финансовых знаний со всего мира, который ты не получишь в рамках высших учебных заведений. Всестороннее углубление в тонкости специализации поможет тебе определиться в каких областях финансов ты захочешь профессионально вырасти.
+                li.js-tab(data-type="whom" data-id="3")
+                  p По итогам курса у тебя будет необходимый комплекс знаний и навыков для успешной карьеры в любой области финанса или для реализации собственного стартапа. Лучшие студенты курса проходят оплачиваемую летнюю стажировку в компаниях-партнерах по всему миру, поэтому сейчас у тебя есть уникальный шанс погрузиться в обучение Зимней Академии SF, не отрываясь от учебы в ВУЗе или работы.  Мы ждем тебя на курсе!
+                  p Ты решил что финансы это твоя жизнь! И тебе недостаточно знаний, которые дают тебе в университете. Ты хочешь быть одним из крутых экспертов в своей области? Зимняя Академия даст тебе полный спектр практических финансовых знаний со всего мира, который ты не получишь в рамках высших учебных заведений. Всестороннее углубление в тонкости специализации поможет тебе определиться в каких областях финансов ты захочешь профессионально вырасти.
+        .contents_what
+          .contents_what_holder.holder
+            h2.contents_what_title Что получат выпускники Академии после обучения
+            .contents_what_description Драгоценные знания от гуру финансовой индустрии, сертификаты и рекомендации от Societe Financiers, бонусы и дополнительные занятия, свободный доступ к огромной базе уникальных информационных материалов
+            .contents_certificate: img.js-lazy(src=images + 'blank.gif', data-src=images + 'certificate.jpg', alt="")
+      section.teachers#teachers
+        .teachers_title.offset
+          .teachers_title_holder.holder
+            h2.teachers_title_text
+              | Преподаватели
+              ins
+            img.teachers_title_media.js-lazy(src=images + "blank.gif", data-src=images + "teachers.jpg", alt="")
+        .teachers_content.offset
+          .teachers_content_holder.holder
+            .teachers_content_inner
+              .teachers_slides.js-slides
+                .teachers_slide
+                  .teachers_slide_face: img.js-lazy(src=images + "blank.gif", data-src=images + "teacher-1.png", alt="")
+                  .teachers_slide_content
+                    .teachers_slide_title Александр<br> Вальцев
+                    .teachers_slide_connect
+                      ul.social.teachers_slide_social
+                        li.social_item.social_item__vkontakte
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                        li.social_item.social_item__facebook
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                      ul.teachers_slide_phone
+                        li +7 909 978 42 81
+                        li +7 999 926 74 55
+                    .teachers_slide_topics Инвестиционный банкинг, equity research, недвижимость
+                    .teachers_slide_meta
+                      dl
+                        dt Образование<br> и&nbsp;достижения:
+                        dd
+                          ul
+                            li University of Toronto
+                            li Passed CFA Level 1,96% in Bloomberg Aptitude Test (2012)
+                      dl
+                        dt Опыт<br> в&nbsp;компаниях:
+                        dd
+                          p WhoTrades, Nisa Capital, First Reliance REIT
+                      dl
+                        dt Ключевые компетенции:
+                        dd
+                          ul
+                            li Финансовое моделирование
+                            li Финансовый учет
+                            li Деривативы
+                .teachers_slide
+                  .teachers_slide_face: img.js-lazy(src=images + "blank.gif", data-src=images + "teacher-2.png", alt="")
+                  .teachers_slide_content
+                    .teachers_slide_title Влас<br> Лёзин
+                    .teachers_slide_connect
+                      ul.social.teachers_slide_social
+                        li.social_item.social_item__vkontakte
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                        li.social_item.social_item__facebook
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                    .teachers_slide_topics Финансовый инжиниринг, оценка деривативов, инвестиционный банкинг
+                    .teachers_slide_meta
+                      dl
+                        dt Образование<br> и&nbsp;достижения:
+                        dd
+                          ul
+                            li University of Utah
+                            li Master of Finance, Passed CFA Level 1
+                      dl
+                        dt Опыт<br> в&nbsp;компаниях:
+                        dd
+                          p Goldman Sachs
+                .teachers_slide
+                  .teachers_slide_face: img.js-lazy(src=images + "blank.gif", data-src=images + "teacher-3.png", alt="")
+                  .teachers_slide_content
+                    .teachers_slide_title Максим<br> Григорьев
+                    .teachers_slide_connect
+                      ul.social.teachers_slide_social
+                        li.social_item.social_item__vkontakte
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                        li.social_item.social_item__facebook
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                    .teachers_slide_topics Венчурный рынок, инвестиционный банкинг, фармацевтика, аудит
+                    .teachers_slide_meta
+                      dl
+                        dt Образование:
+                        dd
+                          ul
+                            li Финансовый Университет при Правительстве РФ
+                      dl
+                        dt Опыт<br> в&nbsp;компаниях:
+                        dd
+                          p WhoTrades, Impulse VC, Lincoln International, Sanofi
+                      dl
+                        dt Ключевые компетенции:
+                        dd
+                          ul
+                            li Финансовое моделирование
+                            li Структурирование венчурных сделок
+                            li Бизнес стратегия
+                            li SQL
+                .teachers_slide
+                  .teachers_slide_face: img.js-lazy(src=images + "blank.gif", data-src=images + "teacher-4.png", alt="")
+                  .teachers_slide_content
+                    .teachers_slide_title Александр<br> Макаров
+                    .teachers_slide_connect
+                      ul.social.teachers_slide_social
+                        li.social_item.social_item__vkontakte
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                        li.social_item.social_item__facebook
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                    .teachers_slide_topics Прямые инвестиии, хедж-фонды, управление активами, equity research
+                    .teachers_slide_meta
+                      dl
+                        dt Образование:
+                        dd
+                          ul
+                            li РЭУ им. Г.В. Плеханова, ЦМФ МГУ
+                      dl
+                        dt Опыт<br> в&nbsp;компаниях:
+                        dd
+                          p Роснано, Dream Team Investments
+                      dl
+                        dt Ключевые компетенции:
+                        dd
+                          ul
+                            li Финансовое моделирование
+                            li МатАн
+                            li ТВиМС
+                            li Excel/VBA
+                            li R, Matlab
+                            li торговые алгоритмы
+                .teachers_slide
+                  .teachers_slide_face: img.js-lazy(src=images + "blank.gif", data-src=images + "teacher-5.png", alt="")
+                  .teachers_slide_content
+                    .teachers_slide_title Евгений<br> Кульц
+                    .teachers_slide_connect
+                      ul.social.teachers_slide_social
+                        li.social_item.social_item__vkontakte
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                        li.social_item.social_item__facebook
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                    .teachers_slide_topics Венчурный рынок, инвестиционный банкинг, фармацевтика, аудит
+                    .teachers_slide_meta
+                      dl
+                        dt Образование<br> и&nbsp;достижения:
+                        dd
+                          ul
+                            li Тамбовский Государственный Технический Университет
+                            li CIMA, ACCA, Cертификат Высшей Школы Главбуха
+                      dl
+                        dt Опыт<br> в&nbsp;компаниях:
+                        dd
+                          p Ямалмеханизация, Engineering, Русагро, «Группа Черкизово»
+                      dl
+                        dt Ключевые компетенции:
+                        dd
+                          ul
+                            li Финансовое планирование
+                            li Финансовый учет по МСФО
+                            li Автоматизация учета
+                            li Налоги
+                .teachers_slide
+                  .teachers_slide_content
+                    .teachers_slide_title Петр<br> Котов
+                    .teachers_slide_connect
+                      ul.social.teachers_slide_social
+                        li.social_item.social_item__vkontakte
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                        li.social_item.social_item__facebook
+                          a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                    .teachers_slide_topics Трейдинг, финансовая аналитика, инвестиции
+                    .teachers_slide_meta
+                      dl
+                        dt Образование:
+                        dd
+                          ul
+                            li York University
+                      dl
+                        dt Опыт<br> в&nbsp;компаниях:
+                        dd
+                          p Smart Trading Ltd.
+                          p Rational Capital Investment Fund
+                      dl
+                        dt Ключевые компетенции:
+                        dd
+                          ul
+                            li Финансовое моделирование
+                            li Технический анализ
+                            li Value investing
+      section.students.offset
+        .students_holder.holder
+          h2.students_title Что говорят выпускники
+          .students_slides_inner
+            .students_slides.js-slides
+              .students_slide
+                .students_slide_icon
+                  svg.icon
+                    use(xlink:href="#icon-quote")
+                .students_slide_image.js-lazy(data-src=images + 'review-1.jpg')
+                .students_slide_content
+                  .students_slide_title Валентин Карасев
+                  .students_slide_text
+                    p Курс от Власа Лезина при поддержке SF - больше, чем просто набор теоретических подходов к оценке компаний. Влас делится именно практическим опытом ведения M&A сделок, делая упор на скрытые и явные мотивы каждого участника этого процесса, а также показывая аудитории кое-какие трюки, о которых не расскажет Джошуа и Перл. Если ты хочешь быть альфа на интервью в BBB, а не мямлить как вчерашний студент, тебе к ребятам.
+              .students_slide
+                .students_slide_icon
+                  svg.icon
+                    use(xlink:href="#icon-quote")
+                .students_slide_image.js-lazy(data-src=images + 'review-2.jpg')
+                .students_slide_content
+                  .students_slide_title Катя Лобач
+                  .students_slide_text
+                    p Привет, ребят! За знаниями в financial accounting и DCF - только к Александру! Достаточно емкие занятия с целой тонной дополнительного материала точно не заставят вас соскучиться. Больше всего вдохновляет, как Александр может знать столько всего сразу и иметь столько опыта - я тоже так хочу!
+              .students_slide
+                .students_slide_icon
+                  svg.icon
+                    use(xlink:href="#icon-quote")
+                .students_slide_image.js-lazy(data-src=images + 'review-1.jpg')
+                .students_slide_content
+                  .students_slide_title Сергей Безруков
+                  .students_slide_text
+                    p Курс от Власа Лезина при поддержке SF - больше, чем просто набор теоретических подходов к оценке компаний. Влас делится именно практическим опытом ведения M&A сделок, делая упор на скрытые и явные мотивы каждого участника этого процесса.
+      section.modules.offset#shedule
+        .modules_holder.holder.js-expand-holder
+          h2.modules_title Полное описание<br> всех модулей
+          .modules_toggle
+            ins.js-expand.is-active(data-deep="true")
+            span Развернуть<br> модули
+          .modules_list.js-expand-content.is-active
+            ul.modules_items
+              li.modules_item
+                .modules_item_inner
+                  h3.modules_item_title Карьерный<br> модуль
+                  .modules_item_date <ins>Дата:</ins> <span>3.10.2016 - 3.12.2017</span>
+                  ul.modules_item_steps
+                    li Составление резюме (CV) для инвестиционных банков
+                    li Составление сопроводительного письма (CL) для инвестиционных банков
+                  .modules_item_extra <strong>БОНУС</strong>: Мини – тренинг по решению тестовых заданий в финансовых организациях
+                  .modules_item_action: a.js-scroller(href="#register", data-target="#register") Забронировать место
+              li.modules_item
+                .modules_item_inner
+                  h3.modules_item_title Фундаментальные финансовые теории
+                  .modules_item_date <ins>Дата:</ins> <span>3.10.2016 - 3.12.2017</span>
+                  ul.modules_item_steps
+                    li Стоимость денег во времени
+                    li Центральные банки и процентные ставки
+                    li Фискальная и монетарная политика
+                    li Теория вероятностей и статистика
+                    li Риск, доходность, диверсификация
+                  .modules_item_action: a.js-scroller(href="#register", data-target="#register") Забронировать место
+              li.modules_item
+                .modules_item_inner
+                  h3.modules_item_title Микроэкономика и макроэкономика
+                  .modules_item_date <ins>Дата:</ins> <span>3.10.2016 - 3.12.2017</span>
+                  ul.modules_item_steps
+                    li Спрос и предложение
+                    li Эластичность
+                    li Рыночная эффективность
+                    li Кривые издержек и их оптимизация.
+                    li Типы рынков и компаний ВВП и ВНП, инфляция, безработица
+                  .modules_item_action: a.js-scroller(href="#register", data-target="#register") Забронировать место
+              li.modules_item
+                .modules_item_inner
+                  h3.modules_item_title Финансовый<br> анализ
+                  .modules_item_date <ins>Дата:</ins> <span>3.10.2016 - 3.12.2017</span>
+                  ul.modules_item_steps
+                    li Финансовые отчетности (IS, CFS, BS, а также «прицепные отчетности»).
+                    li Методы и принципы финансового учета
+                    li Анализ отчетностей: финансовые метрики, мультипликаторы, отношения, индикаторы
+                  .modules_item_action: a.js-scroller(href="#register", data-target="#register") Забронировать место
+              li.modules_item
+                .modules_item_inner
+                  h3.modules_item_title Аудит
+                  .modules_item_date <ins>Дата:</ins> <span>3.10.2016 - 3.12.2017</span>
+                  ul.modules_item_steps
+                    li Повторение финансового учета
+                    li Введение в аудит
+                    li Система внутреннего контроля.
+                    li Введение в аудиторские риски.
+                    li Тестирование финансового контроля
+                  .modules_item_action: a.js-scroller(href="#register", data-target="#register") Забронировать место
+              li.modules_item
+                .modules_item_inner
+                  h3.modules_item_title Налоги
+                  .modules_item_date <ins>Дата:</ins> <span>3.10.2016 - 3.12.2017</span>
+                  ul.modules_item_steps
+                    li Российская система налогообложения и ее администрирование
+                    li Налог на доходы физических лиц
+                    li Налог на прибыль организаций
+                    li Налог на добавленную стоимость (НДС)
+                  .modules_item_action: a.js-scroller(href="#register", data-target="#register") Забронировать место
+      section.choice.offset.js-lazy#register(data-src=images + 'bg-format.jpg')
+        .choice_holder.holder
+          h2.choice_title Выбери удобный формат обучения
+          form.choice_inner.js-form(action="#", method="post", data-type="ajax")
+            .choice_content.js-modules
+              h2.choice_content_title Ваш путь развития
+              .choice_content_tabs
+                ul.choice_content_tabs_inner
+                  li.choice_content_tab.is-active.js-modules-tab(data-price="25000,30000")
+                    input#choice-type-full(type="radio", name="choice-type", value="full")
+                    label.js-modules-link(data-type="full" for="choice-type-full")
+                      span Полный курс Зимней академии
+                  li.choice_content_tab.js-modules-tab(data-price="18000,21500")
+                    input#choice-type-invest(type="radio", name="choice-type", value="invest")
+                    label.js-modules-link(data-type="invest" for="choice-type-invest")
+                      span Investment Banking Analyst
+                  li.choice_content_tab.js-modules-tab(data-price="17000,20500")
+                    input#choice-type-analize(type="radio", name="choice-type", value="analize")
+                    label.js-modules-link(data-type="analize" for="choice-type-analize")
+                      span Quantitative Analyst
+                  li.choice_content_tab.js-modules-tab(data-price="13000,15500")
+                    input#choice-type-trade(type="radio", name="choice-type", value="trade")
+                    label.js-modules-link(data-type="trade" for="choice-type-trade")
+                      span Trading Analyst
+                  li.choice_content_tab.js-modules-tab
+                    input#choice-type-part(type="radio", name="choice-type", value="part")
+                    label.js-modules-link(data-type="part" for="choice-type-part")
+                      span Выбрать модули
+              .choice_content_items
+                table.choice_content_table
+                  thead
+                    tr
+                      td
+                      td Модуль
+                      td Занятия
+                      td Дата
+                  tbody
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-1", data-module="1", data-price="2013", data-discount="5")
+                      td Карьера
+                      td 3
+                      td <span>3.12.2016</span> - <span>4.12.2016</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-2", data-module="2", data-price="2624", data-discount="5")
+                      td Финансовые теории
+                      td 5
+                      td <span>10.12.2016</span> - <span>18.12.2016</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-3", data-module="3", data-price="2624", data-discount="5")
+                      td Экономика
+                      td 3
+                      td <span>24.01.2017</span> - <span>30.01.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-4", data-module="4", data-price="2800", data-discount="5")
+                      td Финансовый анализ
+                      td 5
+                      td <span>5.01.2017</span> - <span>15.01.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-5", data-module="5", data-price="1751", data-discount="5")
+                      td Аудит
+                      td 3
+                      td <span>21.01.2017</span> - <span>22.01.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-6", data-module="6", data-price="4027", data-discount="5")
+                      td Налоги
+                      td 5
+                      td <span>28.01.2017</span> - <span>5.02.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-7", data-module="7", data-price="1312", data-discount="5")
+                      td Excel / VBA
+                      td 3
+                      td <span>11.02.2017</span> - <span>12.02.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-8", data-module="8", data-price="1312", data-discount="5")
+                      td SQL
+                      td 5
+                      td <span>18.02.2017</span> - <span>19.02.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-9", data-module="9", data-price="3018", data-discount="5")
+                      td Python
+                      td 3
+                      td <span>25.02.2017</span> - <span>5.03.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-10", data-module="10", data-price="5234", data-discount="5")
+                      td Корпоративные финансы
+                      td 2
+                      td <span>11.03.2017</span> - <span>26.03.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-11", data-module="11", data-price="2452", data-discount="5")
+                      td Математический анализ
+                      td 3
+                      td <span>1.04.2017</span> - <span>2.04.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-12", data-module="12", data-price="3502", data-discount="5")
+                      td Деривативы
+                      td 5
+                      td <span>8.04.2017</span> - <span>15.04.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-13", data-module="13", data-price="1751", data-discount="5")
+                      td Управление активами
+                      td 3
+                      td <span>22.04.2017</span> - <span>23.04.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-14", data-module="14", data-price="2013", data-discount="5")
+                      td Венчерные инвестиции
+                      td 2
+                      td <span>27.04.2017</span> - <span>28.04.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-15", data-module="15", data-price="3502", data-discount="5")
+                      td Daytrading
+                      td 3
+                      td <span>6.05.2017</span> - <span>14.05.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-16", data-module="16", data-price="2452", data-discount="5")
+                      td Business Strategy
+                      td 3
+                      td <span>20.05.2017</span> - <span>21.05.2017</span>
+                    tr.js-modules-row
+                      td
+                        input.js-modules-field(type="checkbox", name="choice-module-17", data-module="17", data-price="1509", data-discount="5")
+                      td Секретный модуль
+                      td
+                      td 27.05.2017</span> - <span>28.05.2017</span>
+            .choice_side
+              .choice_sum
+                .choice_sum_title Итого:
+                .choice_sum_prices
+                  .choice_sum_price.choice_sum_price__highlight
+                    .choice_sum_price_inner
+                      span До 4 ноября
+                      strong
+                        em.js-modules-price(data-type="first") 23 000
+                        | р
+                  .choice_sum_price
+                    .choice_sum_price_inner
+                      span До 4 декабря
+                      strong
+                        em.js-modules-price(data-type="last") 23 000
+                        | р
+                .choice_sum_discount
+                  label
+                    input(type="checkbox", name="choice-discount")
+                    | Хочу безпроцентную рассрочку
+              .form.choice_form
+                h2.choice_form_title Забронируйте курс
+                .choice_form_note Осталось 34 места
+                .form_fields.choice_form_fields
+                  .choice_form_fields_inner
+                    .choice_form_set
+                      input.field.js-form-validate(type="text", name="choice-name", placeholder="Ваше имя *", title="Ваше имя")
+                      .field-message Укажите ваше имя
+                    .choice_form_set
+                      input.field.js-form-validate(type="tel", name="choice-phone", placeholder="Номер телефона *", title="Телефон")
+                      .field-message Введите корректный номер телефона
+                    .choice_form_set
+                      input.field(type="email", name="choice-phone", placeholder="Адрес почты", title="Email")
+                    .choice_form_submit
+                      button.button.js-form-submit(type="submit") Забронировать
+                .choice_form_phone
+                  <span>+7 909 978 42 81,</span>
+                  <span>+7 999 926 74 55</span>
+                .form_message.form_message__success
+                  .form_message_inner
+                    strong Ваш запрос принят
+                    em Мы свяжемся с вами в ближайшее время
+                .form_message.form_message__error
+                  .form_message_inner
+                    strong Произошла ошибка
+                    em Пожалуйста, попробуйте еще раз
+      section.how.js-lazy(data-src=images + 'bg-how.jpg')
+        .how_info.offset
+          .how_info_inner
+            h2.how_info_title Как будет проходить зимняя академия
+            .how_info_description
+              p Занятия будут проходить в формате вебинаров, на платформе Fuze. Каждое занятие длится в среднем 3 часа. Доступны на выбор базовые и премиумные места в Академии. В течение курса проводятся многочисленные бесплатные бонусные занятия, открывается специальная закрытая библиотека только для участников Академии, преподаватели организовывают скайп-консультации и стабильно предоставляют возможность обратной связи
+        .how_connect.offset
+          ul.how_connect_list
+            li.how_connect_item
+              .how_connect_item_icon
+                svg.icon.icon__tablet
+                  use(xlink:href="#icon-tablet")
+              .how_connect_item_title Пройдите курс с&nbsp;любых мобильных устройств
+            li.how_connect_item
+              .how_connect_item_icon
+                svg.icon.icon__billboard
+                  use(xlink:href="#icon-billboard")
+              .how_connect_item_title Пересматривайте записи трансляций
+            li.how_connect_item
+              .how_connect_item_icon
+                svg.icon.icon__keyboard
+                  use(xlink:href="#icon-keyboard")
+              .how_connect_item_title Задавайте вопросы и&nbsp;общайтесь
+        .how_spacer.offset
+          .how_spacer_holder.holder
+      section.discount.offset#discount
+        .discount_holder.holder
+          h2.discount_title: span Как получить скидку?
+          .discount_columns
+            .discount_contents
+              .discount_contents_inner
+                ul.discount_tabs
+                  li.is-active.js-tab-toggle(data-type="discount" data-id="1") Скидка 20%
+                  li.js-tab-toggle(data-type="discount" data-id="2") Скидка 15%
+                  li.js-tab-toggle(data-type="discount" data-id="3") Скидка 10%
+                ul.discount_sections
+                  li.is-active.js-tab(data-type="discount" data-id="1")
+                    p Получите скидку 20% на весь курс Зимней Академии, отдельный модуль или занятие для участников Летней Академии Societe Financiers.
+                  li.js-tab(data-type="discount" data-id="2")
+                    p Получите скидку 15% на весь курс Зимней Академии, отдельный модуль или занятие для участников Летней Академии Societe Financiers.
+                  li.js-tab(data-type="discount" data-id="3")
+                    p Получите скидку 10% на весь курс Зимней Академии, отдельный модуль или занятие для участников Летней Академии Societe Financiers.
+            .discount_social
+              .discount_social_note Становитесь ближе к нам на официальных страницах Societe Financiers в социальных сетях
+              ul.social.discount_social_list
+                li.social_item.social_item__vkontakte
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                li.social_item.social_item__facebook
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                li.social_item.social_item__instagram
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-instagram"></use></svg>
+                li.social_item.social_item__youtube
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-play"></use></svg>
+      section.bonus
+        .bonus_content.offset
+          .bonus_content_inner
+            h2.bonus_title
+              | Пройди <span>бесплатный</span> вступительный вебинар с преподавателем Зимней Академии
+            form.form.bonus_form.js-form(action="#", method="post", data-type="ajax")
+              .form_fields.bonus_form_fields
+                .bonus_form_set
+                  input.field.js-form-validate(type="text", name="bonus-name", placeholder="Ваше имя", title="Ваше имя")
+                  //- .field-message Укажите ваше имя
+                .bonus_form_set
+                  input.field.js-form-validate(type="tel", name="bonus-phone", placeholder="Номер телефона", title="Номер телефона")
+                  //- .field-message Введите корректный номер телефона
+                .bonus_form_set
+                  input.field(type="text", name="bonus-address", placeholder="Email или профиль ВКонтакте, Facebook", title="Email или профиль", autocapitalize="off")
+                .bonus_form_submit
+                  button.button.button__medium.js-form-submit(type="submit") Успей записаться
+              .form_message.form_message__success
+                .form_message_inner
+                  strong Ваш запрос принят
+                  em Мы свяжемся с вами в ближайшее время
+              .form_message.form_message__error
+                .form_message_inner
+                  strong Произошла ошибка
+                  em Пожалуйста, попробуйте еще раз
+            .bonus_note После заполнения формы, мы добавим вас в нашу базу. Как только у нас появятся открытые даты на бесплатный вебинар - мы оповестим вас.
+        .bonus_media
+          .bonus_media_inner.js-lazy(data-src="./images/bg-expert.jpg")
+          .bonus_media_title Александр Вальцев
+      section.questions.offset.js-lazy(data-src=images + 'bg-questions.jpg')
+        form.form.questions_form.holder.js-form(action="#", method="post", data-type="ajax")
+          .questions_heading.holder
+            h2.questions_title Остались вопросы?
+            .questions_description Мы свяжемся с вами в течение одного рабочего дня
+          .form_fields.questions_fields
+            .questions_form_set
+              input.field.js-form-validate(type="text", name="question-name", placeholder="Ваше имя", title="Ваше имя")
+              .field-message Укажите ваше имя
+            .questions_form_set
+              input.field.js-form-validate(type="tel", name="question-phone", placeholder="Номер телефона", title="Номер телефона")
+              .field-message Введите корректный номер телефона
+            .questions_form_submit
+              button.button.js-form-submit(type="submit") Задать вопрос
+          .form_message.form_message__success
+            .form_message_inner
+              strong Ваш запрос принят
+              em Мы свяжемся с вами в ближайшее время
+          .form_message.form_message__error
+            .form_message_inner
+              strong Произошла ошибка
+              em Пожалуйста, попробуйте еще раз
+      footer.footer.offset
+        .footer_holder.holder
+          .footer_content
+            .footer_logo
+              .footer_logo_inner
+                <svg class="icon"><use xlink:href="#icon-logo"></use></svg>
+            ul.footer_copy
+              li &copy; 2016
+              li Зимняя Академия Societe Financiers<br>Дескриптор курса
+            .footer_connect
+              .footer_phone: a(href="tel:88002681474") 8 (800) 268-14-74
+              ul.footer_links
+                li: a(href="#") Реквизиты
+                li: a(href="#") Политика конфиденциальности
+            .footer_social
+              .footer_social_note Мы в социальных сетях:
+              ul.social.footer_social_list
+                li.social_item.social_item__vkontakte
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-vkontakte"></use></svg>
+                li.social_item.social_item__facebook
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-facebook"></use></svg>
+                li.social_item.social_item__instagram
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-instagram"></use></svg>
+                li.social_item.social_item__youtube
+                  a(href="#") <svg class="icon"><use xlink:href="#icon-play"></use></svg>
+          .footer_developer
+            a(href="#")
+              <svg class="icon"><use xlink:href="#icon-developer"></use></svg>
+    //- script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
+    script
+      | window.jQuery||document.write('<script src="./scripts/jquery.min.js">\x3C/script>');
+    script(src='./scripts/plugins.min.js')
+    script(src='./scripts/common.min.js')

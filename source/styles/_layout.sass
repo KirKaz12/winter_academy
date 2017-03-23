@@ -1,0 +1,48 @@
+// layout
+body
+  .app-loading &
+    overflow-y: scroll
+
+.layout
+  position: relative
+  min-width: 400px
+  min-height: 100%
+  overflow: hidden
+
+  .app-loading &
+    height: 100%
+
+.offset
+  padding: $offset
+
+.holder
+  position: relative
+  max-width: $holder
+  margin: 0 auto
+
+.loader
+  z-index: 500
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  background: #f7f7f7
+  transition: opacity 1s, visibility 0s 1s
+
+  .app-loaded &
+    opacity: 0
+    visibility: hidden
+
+  &:before
+    content: ''
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 50px
+    height: 50px
+    margin: -25px 0 0 -25px
+    border: 3px solid #ec463f
+    border-left-color: rgba(255, 255, 255, 0)
+    border-radius: 50%
+    animation: spin .6s infinite linear

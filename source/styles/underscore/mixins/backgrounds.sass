@@ -1,0 +1,690 @@
+// Underscore.css v0.0.1, http://git.io/vfX7n
+// ==========================================
+// Extremely time-saving Sass/SCSS/Stylus mixins library
+//
+// (c) Damir Sultanov and contributors
+// http://fronteed.com/underscore.css
+// MIT Licensed
+
+
+// Sprite properties (requires Compass)
+//
+// @usage: +_s(filename sprite [optional: full image position repeat size])
+// @aliases: _s, _sprite, us, usprite
+//
+// @param filename - required, name of the image (without extension)
+// @param sprite - required ($sprite and $sprite2x by default), name of sprite (added by _use)
+// @param full (true by default) - optional, returns a full background property
+//  keys:
+//    f, full
+// @param image (true by default) - optional, returns background-image
+//  keys:
+//    i, img, image, url
+// @param position (true by default) - optional, returns background-position
+//  keys:
+//    p, pos, position
+// @param repeat (no-repeat by default) - optional, returns background-repeat
+//  keys:
+//    n, no, nr, no-repeat => no-repeat
+//    r, repeat => repeat
+//    x, rx, repeat-x => repeat-x
+//    y, ry, repeat-y => repeat-y
+// @param size (false by default) - optional, returns image dimension
+//  keys:
+//    s, sz, size, d, dm, dimension => both width and height
+//    w, width => width only
+//    h, height => height only
+
+=_s($arguments...)
+	$values: __arguments($arguments)
+
+	@if length($values) >= 1
+		$filename: nth($values, 1) + ""
+		$options: __removeFirst($values, nth($values, 1))
+		$sprites: false
+		$sprites2x: false
+		$image: false
+		$position: false
+		$repeat: false
+		$size: false
+		$full: false
+		$length: length($options)
+
+		// remove extension
+		@if str-length($filename) > 4
+			$extension: str-slice($filename, -4)
+
+			@if index(".png" ".jpg" ".gif", $extension)
+				$filename: str-slice($filename, 1, -5)
+
+		// get sprite name
+		@if $length > 0
+			$spritename: nth($options, 1)
+			$sprites: map-get($__var, $spritename)
+			$sprites2x: map-get($__var, $spritename + "_extra")
+
+			@if $sprites == null
+				$sprites: false
+			@else
+				$options: __removeFirst($options, $spritename)
+			@if $sprites2x == null
+				$sprites2x: false
+
+		// use $sprite and $sprite2x by default
+		@if $sprites == false
+			@if variable-exists(sprite)
+				$sprites: $sprite
+			@if variable-exists(sprite2x)
+				$sprites2x: $sprite2x
+
+		$length: length($options)
+
+		@if $length > 0
+
+			// full mode
+			@if __exist($options, "f" "full")
+				$full: true
+
+				@if $length > 1
+					$options: __removeList($options, "f" "full")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// image
+			@if $length > 0 and __exist($options, "i" "img" "image" "url")
+				$image: true
+
+				@if $length > 1
+					$options: __removeList($options, "i" "img" "image" "url")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// position
+			@if $length > 0 and __exist($options, "p" "pos" "position")
+				$position: true
+
+				@if $length > 1
+					$options: __removeList($options, "p" "pos" "position")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// no-repeat
+			@if $length > 0 and __exist($options, "n" "no" "nr" "no-repeat")
+				$repeat: "no-repeat"
+
+				@if $length > 1
+					$options: __removeList($options, "n" "no" "nr" "no-repeat")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// repeat-x
+			@if $length > 0 and __exist($options, "x" "rx" "repeat-x")
+				$repeat: "repeat-x"
+
+				@if $length > 1
+					$options: __removeList($options, "x" "rx" "repeat-x")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// repeat-y
+			@if $length > 0 and __exist($options, "y" "ry" "repeat-y")
+				$repeat: "repeat-y"
+
+				@if $length > 1
+					$options: __removeList($options, "y" "ry" "repeat-y")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// repeat
+			@if $length > 0 and __exist($options, "r" "repeat")
+				$repeat: "repeat"
+
+				@if $length > 1
+					$options: __removeList($options, "r" "repeat")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// size
+			@if $length > 0
+				@if __exist($options, "s" "sz" "size" "d" "dm" "dimension")
+					$size: true
+				@if __exist($options, "w" "width")
+					$size: "width"
+				@if __exist($options, "h" "height")
+					$size: "height"
+
+		// 1x
+		@if $sprites != false
+
+			// size
+			@if $size != false
+				@if $size == true
+					width: image-width(sprite-file($sprites, $filename))
+					height: image-height(sprite-file($sprites, $filename))
+				@else if $size == "width"
+					width: image-width(sprite-file($sprites, $filename))
+				@else if $size == "height"
+					height: image-height(sprite-file($sprites, $filename))
+
+			// full
+			@if $full == true or $image == false and $position == false and $repeat == false and $size == false
+				@if $repeat == false
+					$repeat: "no-repeat"
+				background: sprite($sprites, $filename) unquote($repeat)
+			@else
+				@if $image != false and $position != false and $repeat != false
+					background: sprite($sprites, $filename) unquote($repeat)
+				@else
+					@if $image != false
+						@if $position == false
+							background-image: sprite-url($sprites)
+							@if $repeat != false
+								background-repeat: unquote($repeat)
+						@else
+							background-image: sprite-url($sprites)
+							background-position: sprite-position($sprites, $filename)
+					@else
+						@if $position != true
+							@if $repeat != false
+								background-repeat: unquote($repeat)
+						@else
+							background-position: sprite-position($sprites, $filename)
+							@if $repeat != false
+								background-repeat: unquote($repeat)
+
+			// 2x
+			@if $sprites2x != false
+				+_r()
+					@if $image == true or $full == true
+						background-image: sprite-url($sprites2x)
+					@if $position == true or $full == true
+						$location2x: sprite-position($sprites2x, $filename)
+						$location1x: (nth($location2x, 1) / 2) (nth($location2x, 2) / 2)
+						@if sprite-position($sprites, $filename) != ($location1x)
+							background-position: $location1x
+					@if $image == true or $full == true
+						background-size: (image-width(sprite-path($sprites2x)) / 2) (image-height(sprite-path($sprites2x)) / 2)
+
+=_sprite($arguments...)
+	+_s($arguments...)
+
+=us($arguments...)
+	+_s($arguments...)
+
+=usprite($arguments...)
+	+_s($arguments...)
+
+
+// Background
+//
+// @usage: +_bg(filename [optional: extension position repeat size inline])
+// @aliases: _bg, _background, _i, _img, _image, _pic, _picture, ubg, ubackground, ui, uimg, uimage, upic, upicture
+//
+// @param filename - required, name of the image
+// @param extension - (png by default) - optional, image extension
+// @param position (none by default) - optional, background-position
+//  keys:
+//    {x}, {x}px => {x}px {y==x}px
+//    {x}p, {x}% => {x}% {y==x}%
+//    {x} {y}, {x}px {y}px => {x}px {y}px
+//    {x}p {y}p, {x}% {y}% => {x}% {y}%
+//		t, top => 50% 0
+//		b, bottom => 50% 100%
+//		c, center => 50% 50%
+//		l, left => 0 50%
+//		r, right => 100%, 50%
+//		top top, left left => 0 0
+//		bottom bottom, right right => 100% 100%
+//		center center => 50% 50%
+//		top left, left top => 0 0
+//		top center, center top => 50% 0
+//		top right, right top => 100% 0
+//		center left, left center => 0 50%
+//		center right, right center => 100% 50%
+//		bottom left, left bottom => 0 100%
+//		bottom center, center bottom => 50% 100%
+//		bottom right, right bottom => 100% 100%
+// @param repeat (no-repeat by default) - optional, background-repeat
+//  keys:
+//    n, no, nr, no-repeat => no-repeat
+//    r, repeat => repeat
+//    x, rx, repeat-x => repeat-x
+//    y, ry, repeat-y => repeat-y
+// @param size (false by default) - optional, returns image dimension (requires Compass)
+//  keys:
+//    s, sz, size, d, dm, dimension => both width and height
+//    w, width => width only
+//    h, height => height only
+// @param inline (false by default) - optional, returns embedded base64-encoded image (requires Compass)
+// 	keys:
+// 		e, embed, b64, base64, inline
+
+=_bg($arguments...)
+	$values: __arguments($arguments)
+	$filename: null
+	$length: length($values)
+	$full: false
+	$mime: null
+	$x: null
+	$y: null
+	$position: false
+	$repeat: false
+	$size: false
+	$inline: false
+	$suffix: null
+
+	@if $length >= 1
+
+		// filename
+		$filename: nth($values, 1) + ""
+		$options: __removeFirst($values, nth($values, 1))
+		$length: length($options)
+
+		// default extension (png)
+		@if str-length($filename) > 4
+			$suffix: str-slice($filename, -4)
+
+			@if index(".png" ".jpg" ".gif", $suffix)
+				$suffix: false
+			@else
+				$suffix: "png"
+
+		// extension
+		@if $suffix != false or $suffix == null
+			@each $option in $options
+				@if index("png" "jpg" "gif", $option)
+					$suffix: $option
+					$options: __removeFirst($options, $option)
+			@if $suffix == null
+				$suffix: "png"
+
+			$length: length($options)
+
+		@if $length > 0
+
+			// position
+			@if $length > 0
+
+				// t, top, b, bottom, c, center, l, left, r, right
+				@each $position in $options
+					@if $x == null or $y == null
+						$positionValue: __position($position)
+
+						@if $positionValue != null
+							$options: __removeFirst($options, $position)
+
+							@if $x == null
+								$x: $positionValue
+							@else
+								$y: $positionValue
+
+				@if $x != null or $y != null
+					$length: length($options)
+					$position: __positions($x, $y)
+
+			// no-repeat
+			@if $length > 0 and __exist($options, "n" "no" "nr" "no-repeat")
+				$repeat: "no-repeat"
+
+				@if $length > 1
+					$options: __removeList($options, "n" "no" "nr" "no-repeat")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// repeat-x
+			@if $length > 0 and __exist($options, "x" "rx" "repeat-x")
+				$repeat: "repeat-x"
+
+				@if $length > 1
+					$options: __removeList($options, "x" "rx" "repeat-x")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// repeat-y
+			@if $length > 0 and __exist($options, "y" "ry" "repeat-y")
+				$repeat: "repeat-y"
+
+				@if $length > 1
+					$options: __removeList($options, "y" "ry" "repeat-y")
+					$length: length($options)
+				@else
+					$length: 0
+
+			// repeat
+			@if $length > 0 and __exist($options, "r" "repeat")
+				$repeat: "repeat"
+
+				@if $length > 1
+					$options: __removeList($options, "r" "repeat")
+					$length: length($options)
+				@else
+					$length: 0
+
+			@if $length > 0
+
+				// size
+				@if __exist($options, "s" "sz" "size" "d" "dm" "dimension")
+					$size: true
+				@if $length > 0 and __exist($options, "w" "width")
+					$size: "width"
+				@if $length > 0 and __exist($options, "h" "height")
+					$size: "height"
+
+				// inline
+				@if __exist($options, "e" "embed" "b64" "base64" "inline")
+					$inline: true
+
+		// filename
+		@if $suffix != false
+			$filename: $filename + "." + $suffix
+
+		// size
+		@if $size != false
+			@if $size == true
+				width: image-width($filename)
+				height: image-height($filename)
+			@else if $size == "width"
+				width: image-width($filename)
+			@else if $size == "height"
+				height: image-height($filename)
+
+		@if $position == false and $repeat == false
+			@if $repeat == false
+				$repeat: "no-repeat"
+			@if $position == false
+				@if $inline == true
+					background: inline-image(#{$filename}) unquote($repeat)
+				@else
+					background: url(#{$filename}) unquote($repeat)
+			@else
+				@if $inline == true
+					background: inline-image(#{$filename}) #{$position} unquote($repeat)
+				@else
+					background: url(#{$filename}) #{$position} unquote($repeat)
+		@else
+			@if $position == false
+				@if $repeat == false
+					$repeat: "no-repeat"
+				@if $inline == true
+					background: inline-image(#{$filename}) unquote($repeat)
+				@else
+					background: url(#{$filename}) unquote($repeat)
+			@else
+				@if $repeat == false
+					$repeat: "no-repeat"
+				@if $inline == true
+					background: inline-image(#{$filename}) #{$position} unquote($repeat)
+				@else
+					background: url(#{$filename}) #{$position} unquote($repeat)
+
+=_background($arguments...)
+	+_bg($arguments...)
+
+=_i($arguments...)
+	+_bg($arguments...)
+
+=_img($arguments...)
+	+_bg($arguments...)
+
+=_image($arguments...)
+	+_bg($arguments...)
+
+=_pic($arguments...)
+	+_bg($arguments...)
+
+=_picture($arguments...)
+	+_bg($arguments...)
+
+=ubg($arguments...)
+	+_bg($arguments...)
+
+=ubackground($arguments...)
+	+_bg($arguments...)
+
+=ui($arguments...)
+	+_bg($arguments...)
+
+=uimg($arguments...)
+	+_bg($arguments...)
+
+=uimage($arguments...)
+	+_bg($arguments...)
+
+=upic($arguments...)
+	+_bg($arguments...)
+
+=upicture($arguments...)
+	+_bg($arguments...)
+
+
+// PNG image
+//
+// @usage: +_png(filename [optional: position repeat size inline])
+// @aliases: _png, upng
+//
+// @param filename - required, name of the image
+// @param position (none by default) - optional, background-position
+//  keys:
+//    {x}, {x}px => {x}px {y==x}px
+//    {x}p, {x}% => {x}% {y==x}%
+//    {x} {y}, {x}px {y}px => {x}px {y}px
+//    {x}p {y}p, {x}% {y}% => {x}% {y}%
+//		t, top => 50% 0
+//		b, bottom => 50% 100%
+//		c, center => 50% 50%
+//		l, left => 0 50%
+//		r, right => 100%, 50%
+//		top top, left left => 0 0
+//		bottom bottom, right right => 100% 100%
+//		center center => 50% 50%
+//		top left, left top => 0 0
+//		top center, center top => 50% 0
+//		top right, right top => 100% 0
+//		center left, left center => 0 50%
+//		center right, right center => 100% 50%
+//		bottom left, left bottom => 0 100%
+//		bottom center, center bottom => 50% 100%
+//		bottom right, right bottom => 100% 100%
+// @param repeat (no-repeat by default) - optional, background-repeat
+//  keys:
+//    n, no, nr, no-repeat => no-repeat
+//    r, repeat => repeat
+//    x, rx, repeat-x => repeat-x
+//    y, ry, repeat-y => repeat-y
+// @param size (false by default) - optional, returns image dimension (requires Compass)
+//  keys:
+//    s, sz, size, d, dm, dimension => both width and height
+//    w, width => width only
+//    h, height => height only
+// @param inline (false by default) - optional, returns embedded base64-encoded image (requires Compass)
+// 	keys:
+// 		e, embed, b64, base64, inline
+
+=_png($arguments...)
+	$values: __arguments($arguments)
+	$values: append($values, "png")
+	+_bg($values)
+
+=upng($arguments...)
+	+_png($arguments...)
+
+
+// JPG image
+//
+// @usage: +_jpg(filename [optional: position repeat size inline])
+// @aliases: _jpg, ujpg
+//
+// @param filename - required, name of the image
+// @param position (none by default) - optional, background-position
+//  keys:
+//    {x}, {x}px => {x}px {y==x}px
+//    {x}p, {x}% => {x}% {y==x}%
+//    {x} {y}, {x}px {y}px => {x}px {y}px
+//    {x}p {y}p, {x}% {y}% => {x}% {y}%
+//		t, top => 50% 0
+//		b, bottom => 50% 100%
+//		c, center => 50% 50%
+//		l, left => 0 50%
+//		r, right => 100%, 50%
+//		top top, left left => 0 0
+//		bottom bottom, right right => 100% 100%
+//		center center => 50% 50%
+//		top left, left top => 0 0
+//		top center, center top => 50% 0
+//		top right, right top => 100% 0
+//		center left, left center => 0 50%
+//		center right, right center => 100% 50%
+//		bottom left, left bottom => 0 100%
+//		bottom center, center bottom => 50% 100%
+//		bottom right, right bottom => 100% 100%
+// @param repeat (no-repeat by default) - optional, background-repeat
+//  keys:
+//    n, no, nr, no-repeat => no-repeat
+//    r, repeat => repeat
+//    x, rx, repeat-x => repeat-x
+//    y, ry, repeat-y => repeat-y
+// @param size (false by default) - optional, returns image dimension (requires Compass)
+//  keys:
+//    s, sz, size, d, dm, dimension => both width and height
+//    w, width => width only
+//    h, height => height only
+// @param inline (false by default) - optional, returns embedded base64-encoded image (requires Compass)
+// 	keys:
+// 		e, embed, b64, base64, inline
+
+=_jpg($arguments...)
+	$values: __arguments($arguments)
+	$values: append($values, "jpg")
+	+_bg($values)
+
+=ujpg($arguments...)
+	+_jpg($arguments...)
+
+
+// GIF image
+//
+// @usage: +_gif(filename [optional: position repeat size inline])
+// @aliases: _gif, ugif
+//
+// @param filename - required, name of the image
+// @param position (none by default) - optional, background-position
+//  keys:
+//    {x}, {x}px => {x}px {y==x}px
+//    {x}p, {x}% => {x}% {y==x}%
+//    {x} {y}, {x}px {y}px => {x}px {y}px
+//    {x}p {y}p, {x}% {y}% => {x}% {y}%
+//		t, top => 50% 0
+//		b, bottom => 50% 100%
+//		c, center => 50% 50%
+//		l, left => 0 50%
+//		r, right => 100%, 50%
+//		top top, left left => 0 0
+//		bottom bottom, right right => 100% 100%
+//		center center => 50% 50%
+//		top left, left top => 0 0
+//		top center, center top => 50% 0
+//		top right, right top => 100% 0
+//		center left, left center => 0 50%
+//		center right, right center => 100% 50%
+//		bottom left, left bottom => 0 100%
+//		bottom center, center bottom => 50% 100%
+//		bottom right, right bottom => 100% 100%
+// @param repeat (no-repeat by default) - optional, background-repeat
+//  keys:
+//    n, no, nr, no-repeat => no-repeat
+//    r, repeat => repeat
+//    x, rx, repeat-x => repeat-x
+//    y, ry, repeat-y => repeat-y
+// @param size (false by default) - optional, returns image dimension (requires Compass)
+//  keys:
+//    s, sz, size, d, dm, dimension => both width and height
+//    w, width => width only
+//    h, height => height only
+// @param inline (false by default) - optional, returns embedded base64-encoded image (requires Compass)
+// 	keys:
+// 		e, embed, b64, base64, inline
+
+=_gif($arguments...)
+	$values: __arguments($arguments)
+	$values: append($values, "gif")
+	+_bg($values)
+
+=ugif($arguments...)
+	+_gif($arguments...)
+
+
+// Embedded base64-encoded image
+//
+// @usage: +_b64(filename [optional: extension position repeat size])
+// @aliases: _b64, _base64, _embed, _inline, ub64, ubase64, uembed, uinline
+//
+// @param filename - required, name of the image
+// @param extension - (png by default) - optional, image extension
+// @param position (none by default) - optional, background-position
+//  keys:
+//    {x}, {x}px => {x}px {y==x}px
+//    {x}p, {x}% => {x}% {y==x}%
+//    {x} {y}, {x}px {y}px => {x}px {y}px
+//    {x}p {y}p, {x}% {y}% => {x}% {y}%
+//		t, top => 50% 0
+//		b, bottom => 50% 100%
+//		c, center => 50% 50%
+//		l, left => 0 50%
+//		r, right => 100%, 50%
+//		top top, left left => 0 0
+//		bottom bottom, right right => 100% 100%
+//		center center => 50% 50%
+//		top left, left top => 0 0
+//		top center, center top => 50% 0
+//		top right, right top => 100% 0
+//		center left, left center => 0 50%
+//		center right, right center => 100% 50%
+//		bottom left, left bottom => 0 100%
+//		bottom center, center bottom => 50% 100%
+//		bottom right, right bottom => 100% 100%
+// @param repeat (no-repeat by default) - optional, background-repeat
+//  keys:
+//    n, no, nr, no-repeat => no-repeat
+//    r, repeat => repeat
+//    x, rx, repeat-x => repeat-x
+//    y, ry, repeat-y => repeat-y
+// @param size (false by default) - optional, returns image dimension (requires Compass)
+//  keys:
+//    s, sz, size, d, dm, dimension => both width and height
+//    w, width => width only
+//    h, height => height only
+
+=_b64($arguments...)
+	$values: __arguments($arguments)
+	$values: append($values, "embed")
+	+_bg($values)
+
+=_base64($arguments...)
+	+_b64($arguments...)
+
+=_embed($arguments...)
+	+_b64($arguments...)
+
+=_inline($arguments...)
+	+_b64($arguments...)
+
+=ub64($arguments...)
+	+_b64($arguments...)
+
+=ubase64($arguments...)
+	+_b64($arguments...)
+
+=uembed($arguments...)
+	+_b64($arguments...)
+
+=uinline($arguments...)
+	+_b64($arguments...)

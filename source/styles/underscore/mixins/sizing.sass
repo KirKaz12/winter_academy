@@ -1,0 +1,186 @@
+// Underscore.css v0.0.1, http://git.io/vfX7n
+// ==========================================
+// Extremely time-saving Sass/SCSS/Stylus mixins library
+//
+// (c) Damir Sultanov and contributors
+// http://fronteed.com/underscore.css
+// MIT Licensed
+
+
+// Box (square) declaration (width and height)
+//
+// @usage: +_bx(size)
+// @aliases: _bx, _box, _sq, _square, ubx, ubox, usq, usquare
+//
+// @param size - required, width and height, space delimeted. One value produces a box {size}x{size}
+//  keys:
+//    f, full => 100%
+//    h, half => 50%
+//    "x/y" => z% ("4/5" => 80%)
+//    a, auto => auto
+//    inh, inherit => inherit
+//    {number}, {number}px => {number}px
+//    {number}e, {number}em => {number}em
+//    {number}p, {number}% => {number}%
+
+=_bx($arguments...)
+	$options: __arguments($arguments)
+	$length: length($options)
+
+	@if $length > 0
+
+		// cover
+		@if __exist($options, "c" "cv" "cover")
+			width: 100%
+			height: 100%
+		@else
+			width: __unit(nth($options, 1))
+
+			@if $length > 1
+				height: __unit(nth($options, 2))
+			@else
+				height: __unit(nth($options, 1))
+
+=_box($aguments...)
+	+_bx($aguments...)
+
+=_sq($aguments...)
+	+_bx($aguments...)
+
+=_square($aguments...)
+	+_bx($aguments...)
+
+=ubx($aguments...)
+	+_bx($aguments...)
+
+=ubox($aguments...)
+	+_bx($aguments...)
+
+=usq($aguments...)
+	+_bx($aguments...)
+
+=usquare($aguments...)
+	+_bx($aguments...)
+
+
+// Image dimension (width and height)
+//
+// @usage: +_sz(filename [optional: extension])
+// @aliases: _sz, _size, _dm, _dimension, usz, usize, udm, udimension
+//
+// @param filename - required, filename to image with extension (png is used as extension if not set)
+// @param extension (png by default) - optional, image extension
+// 	keys:
+//		png, jpg, gif
+
+=_sz($arguments...)
+	$options: __arguments($arguments)
+	$length: length($options)
+	$filename: null
+	$suffix: null
+	$mime: null
+	$width: null
+	$height: null
+
+	@if $length > 0
+		$filename: nth($options, 1)
+		$options: __removeFirst($options, nth($options, 1))
+		$length: length($options)
+
+		// default extension (png)
+		@if str-length($filename) > 4
+			$suffix: str-slice($filename, -4)
+
+			@if index(".png" ".jpg" ".gif", $suffix)
+				$suffix: false
+			@else
+				$suffix: "png"
+
+		@if $length > 0
+			@if $suffix != false or $suffix == null
+				@each $option in $options
+					@if index("png" "jpg" "gif", $option)
+						$suffix: $option
+
+		@if $suffix == null
+			$suffix: "png"
+
+	@if $filename != null
+		@if $suffix == false
+			$width: image-width($filename)
+			$height: image-height($filename)
+		@else
+			$width: image-width($filename + "." + $suffix)
+			$height: image-height($filename + "." + $suffix)
+
+	@if $width != null
+		width: $width
+	@if $height != null
+		height: $height
+
+=_size($arguments...)
+	+_sz($arguments...)
+
+=_dm($arguments...)
+	+_sz($arguments...)
+
+=_dimension($arguments...)
+	+_sz($arguments...)
+
+=usz($arguments...)
+	+_sz($arguments...)
+
+=usize($arguments...)
+	+_sz($arguments...)
+
+=udm($arguments...)
+	+_sz($arguments...)
+
+=udimension($arguments...)
+	+_sz($arguments...)
+
+
+// Image width (can also be used as function)
+//
+// @usage: +_w(path [optional: extension])
+// @aliases: _w, _width, uw, uwidth
+//
+// @param path - required, path to image with extension
+// @param extension (png by default) - optional, image extension
+// 	keys:
+//		gif, jpg, png
+
+=_w($arguments...)
+	width: _w($arguments...)
+
+=_width($arguments...)
+	width: _w($arguments...)
+
+=uw($arguments...)
+	width: _w($arguments...)
+
+=uwidth($arguments...)
+	width: _w($arguments...)
+
+
+// Image height (can also be used as function)
+//
+// @usage: +_h(path [optional: extension])
+// @aliases: _h, _height, uh, uheight
+//
+// @param path - required, path to image with extension
+// @param extension (png by default) - optional, image extension
+// 	keys:
+//		gif, jpg, png
+
+=_h($arguments...)
+	height: _h($arguments...)
+
+=_height($arguments...)
+	height: _h($arguments...)
+
+=uh($arguments...)
+	height: _h($arguments...)
+
+=uheight($arguments...)
+	height: _h($arguments...)
